@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$InstructionTearOff {
-  const _$InstructionTearOff();
+class _$AssemblyInstructionTearOff {
+  const _$AssemblyInstructionTearOff();
 
   AInstruction aInstruction({required String value}) {
     return AInstruction(
@@ -34,10 +34,10 @@ class _$InstructionTearOff {
 }
 
 /// @nodoc
-const $Instruction = _$InstructionTearOff();
+const $AssemblyInstruction = _$AssemblyInstructionTearOff();
 
 /// @nodoc
-mixin _$Instruction {
+mixin _$AssemblyInstruction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String value) aInstruction,
@@ -83,19 +83,20 @@ mixin _$Instruction {
 }
 
 /// @nodoc
-abstract class $InstructionCopyWith<$Res> {
-  factory $InstructionCopyWith(
-          Instruction value, $Res Function(Instruction) then) =
-      _$InstructionCopyWithImpl<$Res>;
+abstract class $AssemblyInstructionCopyWith<$Res> {
+  factory $AssemblyInstructionCopyWith(
+          AssemblyInstruction value, $Res Function(AssemblyInstruction) then) =
+      _$AssemblyInstructionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InstructionCopyWithImpl<$Res> implements $InstructionCopyWith<$Res> {
-  _$InstructionCopyWithImpl(this._value, this._then);
+class _$AssemblyInstructionCopyWithImpl<$Res>
+    implements $AssemblyInstructionCopyWith<$Res> {
+  _$AssemblyInstructionCopyWithImpl(this._value, this._then);
 
-  final Instruction _value;
+  final AssemblyInstruction _value;
   // ignore: unused_field
-  final $Res Function(Instruction) _then;
+  final $Res Function(AssemblyInstruction) _then;
 }
 
 /// @nodoc
@@ -107,7 +108,8 @@ abstract class $AInstructionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AInstructionCopyWithImpl<$Res> extends _$InstructionCopyWithImpl<$Res>
+class _$AInstructionCopyWithImpl<$Res>
+    extends _$AssemblyInstructionCopyWithImpl<$Res>
     implements $AInstructionCopyWith<$Res> {
   _$AInstructionCopyWithImpl(
       AInstruction _value, $Res Function(AInstruction) _then)
@@ -139,7 +141,7 @@ class _$AInstruction implements AInstruction {
 
   @override
   String toString() {
-    return 'Instruction.aInstruction(value: $value)';
+    return 'AssemblyInstruction.aInstruction(value: $value)';
   }
 
   @override
@@ -226,7 +228,7 @@ class _$AInstruction implements AInstruction {
   }
 }
 
-abstract class AInstruction implements Instruction {
+abstract class AInstruction implements AssemblyInstruction {
   const factory AInstruction({required String value}) = _$AInstruction;
 
   String get value => throw _privateConstructorUsedError;
@@ -244,7 +246,8 @@ abstract class $CInstructionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CInstructionCopyWithImpl<$Res> extends _$InstructionCopyWithImpl<$Res>
+class _$CInstructionCopyWithImpl<$Res>
+    extends _$AssemblyInstructionCopyWithImpl<$Res>
     implements $CInstructionCopyWith<$Res> {
   _$CInstructionCopyWithImpl(
       CInstruction _value, $Res Function(CInstruction) _then)
@@ -290,7 +293,7 @@ class _$CInstruction implements CInstruction {
 
   @override
   String toString() {
-    return 'Instruction.cInstruction(destination: $destination, computation: $computation, jump: $jump)';
+    return 'AssemblyInstruction.cInstruction(destination: $destination, computation: $computation, jump: $jump)';
   }
 
   @override
@@ -386,7 +389,7 @@ class _$CInstruction implements CInstruction {
   }
 }
 
-abstract class CInstruction implements Instruction {
+abstract class CInstruction implements AssemblyInstruction {
   const factory CInstruction(
       {String? destination,
       String? computation,

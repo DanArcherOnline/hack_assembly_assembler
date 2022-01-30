@@ -3,10 +3,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'instruction.freezed.dart';
 
 @freezed
-class Instruction with _$Instruction {
-  const factory Instruction.aInstruction({required String value}) =
+class AssemblyInstruction with _$AssemblyInstruction {
+  const factory AssemblyInstruction.aInstruction({required String value}) =
       AInstruction;
-  const factory Instruction.cInstruction({
+  const factory AssemblyInstruction.cInstruction({
     String? destination,
     String? computation,
     String? jump,

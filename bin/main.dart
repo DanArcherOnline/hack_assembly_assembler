@@ -5,6 +5,7 @@ import 'package:args/args.dart';
 import 'assembly_parser.dart';
 import 'di_setup.dart';
 import 'line_processer.dart';
+import 'machine_code_translator.dart';
 
 const pathArgName = 'path';
 const pathArgAbbr = 'p';
@@ -19,6 +20,7 @@ void main(List<String> arguments) {
       file: file,
       lineOperation: (line) {
         final failureOrInstruction = assemblyParser.parse(line);
+        final machineCodeTranslator = sl<MachineCodeTranslator>();
         failureOrInstruction.fold(
           (failure) => failure.map(
             notInstruction: (f) {
@@ -55,6 +57,14 @@ void main(List<String> arguments) {
             );
           },
         );
+        failureOrInstruction.map((assemblyInstruction) {
+          final failureOrBinary =
+              machineCodeTranslator.translate(assemblyInstruction);
+          final binary = failureOrBinary.getOrElse(
+            () => throw Exception('could not translate instruction to binary'),
+          );
+          print(binary);
+        });
       });
 }
 

@@ -35,10 +35,11 @@ class MockAInstructionParser extends _i1.Mock
           .noSuchMethod(Invocation.method(#isValid, [code]), returnValue: false)
       as bool);
   @override
-  _i2.Either<_i4.Failure, _i5.Instruction> parse(String? code) =>
+  _i2.Either<_i4.Failure, _i5.AssemblyInstruction> parse(String? code) =>
       (super.noSuchMethod(Invocation.method(#parse, [code]),
-              returnValue: _FakeEither_0<_i4.Failure, _i5.Instruction>())
-          as _i2.Either<_i4.Failure, _i5.Instruction>);
+              returnValue:
+                  _FakeEither_0<_i4.Failure, _i5.AssemblyInstruction>())
+          as _i2.Either<_i4.Failure, _i5.AssemblyInstruction>);
 }
 
 /// A class which mocks [CInstructionParser].
@@ -51,10 +52,11 @@ class MockCInstructionParser extends _i1.Mock
   }
 
   @override
-  _i2.Either<_i4.Failure, _i5.Instruction> parse(String? code) =>
+  _i2.Either<_i4.Failure, _i5.AssemblyInstruction> parse(String? code) =>
       (super.noSuchMethod(Invocation.method(#parse, [code]),
-              returnValue: _FakeEither_0<_i4.Failure, _i5.Instruction>())
-          as _i2.Either<_i4.Failure, _i5.Instruction>);
+              returnValue:
+                  _FakeEither_0<_i4.Failure, _i5.AssemblyInstruction>())
+          as _i2.Either<_i4.Failure, _i5.AssemblyInstruction>);
   @override
   bool isValid(String? code) => (super
           .noSuchMethod(Invocation.method(#isValid, [code]), returnValue: false)
