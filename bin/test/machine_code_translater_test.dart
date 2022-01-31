@@ -3,10 +3,10 @@ import 'package:test/test.dart';
 
 import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
-import '../di_setup.dart';
 import '../failure.dart';
 import '../machine_code_instruction.dart';
 import '../machine_code_translator.dart';
+import '../service_locator.dart';
 import '../typedefs.dart';
 
 void main() {

@@ -7,9 +7,9 @@ import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
 import '../assembly_parser.dart';
 import '../c_instruction_parser.dart';
-import '../di_setup.dart';
 import '../failure.dart';
-import 'assembly_parser_test.mocks.dart';
+import '../service_locator.dart';
+import 'a_instruction_parser_test.mocks.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {

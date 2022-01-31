@@ -8,11 +8,12 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import 'a_instruction_parser.dart' as _i3;
-import 'assembly_parser.dart' as _i7;
+import 'assembly_parser.dart' as _i8;
 import 'c_instruction_parser.dart' as _i4;
 import 'line_processer.dart' as _i5;
+import 'machine_code_instruction.dart' as _i6;
 import 'machine_code_translator.dart'
-    as _i6; // ignore_for_file: unnecessary_lambdas
+    as _i7; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -22,9 +23,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i3.AInstructionParser>(() => _i3.AInstructionParser());
   gh.factory<_i4.CInstructionParser>(() => _i4.CInstructionParser());
   gh.lazySingleton<_i5.LineProcesser>(() => _i5.LineProcesser());
-  gh.lazySingleton<_i6.MachineCodeTranslator>(
-      () => _i6.MachineCodeTranslator());
-  gh.lazySingleton<_i7.AssemblyParser>(() => _i7.AssemblyParser(
+  gh.factory<_i6.MachineCodeInstruction>(
+      () => _i6.MachineCodeInstruction(value: get<String>()));
+  gh.lazySingleton<_i7.MachineCodeTranslator>(
+      () => _i7.MachineCodeTranslator());
+  gh.lazySingleton<_i8.AssemblyParser>(() => _i8.AssemblyParser(
       get<_i3.AInstructionParser>(), get<_i4.CInstructionParser>()));
   return get;
 }

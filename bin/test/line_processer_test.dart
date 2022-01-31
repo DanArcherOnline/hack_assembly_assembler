@@ -4,8 +4,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../di_setup.dart';
 import '../line_processer.dart';
+import '../service_locator.dart';
 import 'line_processer_test.mocks.dart';
 
 class Operation {
