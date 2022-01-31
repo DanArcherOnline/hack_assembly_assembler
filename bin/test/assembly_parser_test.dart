@@ -4,11 +4,11 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import '../a_instruction_parser.dart';
+import '../assembly_instruction.dart';
 import '../assembly_parser.dart';
 import '../c_instruction_parser.dart';
 import '../di_setup.dart';
 import '../failure.dart';
-import '../instruction.dart';
 import 'assembly_parser_test.mocks.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])

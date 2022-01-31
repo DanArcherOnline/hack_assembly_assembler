@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import 'assembly_instruction.dart';
 import 'failure.dart';
-import 'instruction.dart';
 import 'instruction_parser.dart';
 import 'typedefs.dart';
 

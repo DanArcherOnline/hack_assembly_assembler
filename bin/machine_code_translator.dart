@@ -2,8 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import './int_extension.dart';
+import 'a_instruction_parser.dart';
+import 'assembly_instruction.dart';
 import 'failure.dart';
-import 'instruction.dart';
 import 'machine_code_instruction.dart';
 import 'typedefs.dart';
 
@@ -76,6 +77,8 @@ class MachineCodeTranslator {
     final aInstructionValue = int.tryParse(aInstruction.value);
     if (aInstructionValue == null) {
       return left(InvalidAInstructionValueFailure());
+    } else if (aInstructionValue > AInstructionParser.maxVal) {
+      return left(ValueTooLargeFailure());
     }
     final aInstructionValueBinary = aInstructionValue.toBinary();
     final fullAInstructionValueBinary = aInstructionValueBinary.padLeft(
@@ -88,35 +91,52 @@ class MachineCodeTranslator {
   Either<Failure, String> _translateCInstruction(CInstruction cInstruction) {
     Failure? failure;
     const cInstructionTypeBinary = '111';
-
     final binaryInstruciton = StringBuffer();
     binaryInstruciton.write(cInstructionTypeBinary);
+    failure ??=
+        writeComputationBinaryToStringBuffer(cInstruction, binaryInstruciton);
+    failure ??=
+        writeDestinationBinaryToStringBuffer(cInstruction, binaryInstruciton);
+    failure ??= writeJumpBinaryToStringBuffer(cInstruction, binaryInstruciton);
+    if (failure != null) {
+      return left(failure);
+    }
+    return right(binaryInstruciton.toString());
+  }
 
-    final failureOrDestBinary =
-        _translateDestinationToBinary(cInstruction.destination);
-    failureOrDestBinary.fold(
+  Failure? writeJumpBinaryToStringBuffer(
+      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+    Failure? failure;
+    final failureOrJumpBinary = _translateJumpToBinary(cInstruction.jump);
+    failureOrJumpBinary.fold(
       (f) => failure ??= f,
-      (dest) => binaryInstruciton.write(dest),
+      (jump) => binaryInstruciton.write(jump),
     );
+    return failure;
+  }
 
+  Failure? writeComputationBinaryToStringBuffer(
+      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+    Failure? failure;
     final failureOrCompBinary =
         _translateComputationToBinary(cInstruction.computation);
     failureOrCompBinary.fold(
       (f) => failure ??= f,
       (comp) => binaryInstruciton.write(comp),
     );
+    return failure;
+  }
 
-    final failureOrJumpBinary = _translateJumpToBinary(cInstruction.jump);
-    failureOrJumpBinary.fold(
+  Failure? writeDestinationBinaryToStringBuffer(
+      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+    Failure? failure;
+    final failureOrDestBinary =
+        _translateDestinationToBinary(cInstruction.destination);
+    failureOrDestBinary.fold(
       (f) => failure ??= f,
-      (jump) => binaryInstruciton.write(jump),
+      (dest) => binaryInstruciton.write(dest),
     );
-
-    if (failure != null) {
-      return left(failure!);
-    }
-
-    return right(binaryInstruciton.toString());
+    return failure;
   }
 
   Either<Failure, String?> _translateDestinationToBinary(String? destination) {
@@ -132,21 +152,33 @@ class MachineCodeTranslator {
   }
 
   Either<Failure, String?> _translateComputationToBinary(String? computation) {
-    const compTable0Binary = '0';
-    const compTable1Binary = '1';
-    final comp0 = computationTranslationTable0[computation];
-    if (comp0 == null) {
-      final comp1 = computationTranslationTable1[computation];
-      if (comp1 == null) {
-        return left(InvalidCInstructionComputationFailure());
-      } else {
-        final computationBinary = compTable1Binary + comp1;
-        return right(computationBinary);
-      }
-    } else {
-      final computationBinary = compTable0Binary + comp0;
-      return right(computationBinary);
+    const compTable0BinaryPrefix = '0';
+    const compTable1BinaryPrefix = '1';
+    final compTranslationFromTable0 = computationTranslationTable0[computation];
+    if (compTranslationFromTable0 != null) {
+      return right(compTable0BinaryPrefix + compTranslationFromTable0);
     }
+    final compTranslationFromTable1 = computationTranslationTable1[computation];
+    if (compTranslationFromTable1 != null) {
+      return right(compTable1BinaryPrefix + compTranslationFromTable1);
+    }
+    return left(InvalidCInstructionComputationFailure());
+
+    // if (compTranslationFromTable0 == null) {
+    //   final compTranslationFromTable1 =
+    //       computationTranslationTable1[computation];
+    //   if (compTranslationFromTable1 == null) {
+    //     return left(InvalidCInstructionComputationFailure());
+    //   } else {
+    //     final computationBinary =
+    //         compTranslationFromTable1 + compTable1BinaryPrefix;
+    //     return right(computationBinary);
+    //   }
+    // } else {
+    //   final computationBinary =
+    //       compTranslationFromTable0 + compTable0BinaryPrefix;
+    //   return right(computationBinary);
+    // }
   }
 
   Either<Failure, String?> _translateJumpToBinary(String? jump) {

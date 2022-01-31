@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'instruction.freezed.dart';
+part 'assembly_instruction.freezed.dart';
 
 @freezed
 class AssemblyInstruction with _$AssemblyInstruction {

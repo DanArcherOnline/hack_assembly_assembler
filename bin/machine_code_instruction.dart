@@ -1,9 +1,10 @@
-class MachineCodeInstruction {
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'machine_code_instruction.freezed.dart';
+
+@freezed
+class MachineCodeInstruction with _$MachineCodeInstruction {
   static const bitLength = 16;
-  final String value;
-
-  MachineCodeInstruction({required this.value});
-
-  @override
-  String toString() => 'MachineCodeInstruction(value: $value)';
+  const factory MachineCodeInstruction({required String value}) =
+      _MachineCodeInstruction;
 }

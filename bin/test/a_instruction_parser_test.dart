@@ -3,10 +3,10 @@ import 'package:mockito/annotations.dart';
 import 'package:test/test.dart';
 
 import '../a_instruction_parser.dart';
+import '../assembly_instruction.dart';
 import '../c_instruction_parser.dart';
 import '../di_setup.dart';
 import '../failure.dart';
-import '../instruction.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
