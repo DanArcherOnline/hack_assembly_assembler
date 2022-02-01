@@ -11,7 +11,7 @@ import '../typedefs.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
-  configureDependencies();
+  configureDependencies(Env.test);
   late CInstructionParser cInstructionParser;
 
   setUp(() {

@@ -40,6 +40,10 @@ class _$FailureTearOff {
   InvalidCInstructionJumpFailure invalidCInstructionJump() {
     return const InvalidCInstructionJumpFailure();
   }
+
+  InvalidFilePathFailure InvalidFilePath() {
+    return const InvalidFilePathFailure();
+  }
 }
 
 /// @nodoc
@@ -55,6 +59,7 @@ mixin _$Failure {
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +70,7 @@ mixin _$Failure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +81,7 @@ mixin _$Failure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,6 +97,7 @@ mixin _$Failure {
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +112,7 @@ mixin _$Failure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -118,6 +127,7 @@ mixin _$Failure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -184,6 +194,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return notInstruction();
   }
@@ -197,6 +208,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return notInstruction?.call();
   }
@@ -210,6 +222,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (notInstruction != null) {
@@ -231,6 +244,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return notInstruction(this);
   }
@@ -248,6 +262,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return notInstruction?.call(this);
   }
@@ -265,6 +280,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (notInstruction != null) {
@@ -324,6 +340,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return valueTooLarge();
   }
@@ -337,6 +354,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return valueTooLarge?.call();
   }
@@ -350,6 +368,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (valueTooLarge != null) {
@@ -371,6 +390,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return valueTooLarge(this);
   }
@@ -388,6 +408,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return valueTooLarge?.call(this);
   }
@@ -405,6 +426,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (valueTooLarge != null) {
@@ -468,6 +490,7 @@ class _$InvalidAInstructionValueFailure
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return invalidAInstructionValue();
   }
@@ -481,6 +504,7 @@ class _$InvalidAInstructionValueFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return invalidAInstructionValue?.call();
   }
@@ -494,6 +518,7 @@ class _$InvalidAInstructionValueFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidAInstructionValue != null) {
@@ -515,6 +540,7 @@ class _$InvalidAInstructionValueFailure
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return invalidAInstructionValue(this);
   }
@@ -532,6 +558,7 @@ class _$InvalidAInstructionValueFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return invalidAInstructionValue?.call(this);
   }
@@ -549,6 +576,7 @@ class _$InvalidAInstructionValueFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidAInstructionValue != null) {
@@ -614,6 +642,7 @@ class _$InvalidCInstructionDestinationFailure
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return invalidCInstructionDestination();
   }
@@ -627,6 +656,7 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return invalidCInstructionDestination?.call();
   }
@@ -640,6 +670,7 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionDestination != null) {
@@ -661,6 +692,7 @@ class _$InvalidCInstructionDestinationFailure
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return invalidCInstructionDestination(this);
   }
@@ -678,6 +710,7 @@ class _$InvalidCInstructionDestinationFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return invalidCInstructionDestination?.call(this);
   }
@@ -695,6 +728,7 @@ class _$InvalidCInstructionDestinationFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionDestination != null) {
@@ -760,6 +794,7 @@ class _$InvalidCInstructionComputationFailure
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return invalidCInstructionComputation();
   }
@@ -773,6 +808,7 @@ class _$InvalidCInstructionComputationFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return invalidCInstructionComputation?.call();
   }
@@ -786,6 +822,7 @@ class _$InvalidCInstructionComputationFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionComputation != null) {
@@ -807,6 +844,7 @@ class _$InvalidCInstructionComputationFailure
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return invalidCInstructionComputation(this);
   }
@@ -824,6 +862,7 @@ class _$InvalidCInstructionComputationFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return invalidCInstructionComputation?.call(this);
   }
@@ -841,6 +880,7 @@ class _$InvalidCInstructionComputationFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionComputation != null) {
@@ -905,6 +945,7 @@ class _$InvalidCInstructionJumpFailure
     required TResult Function() invalidCInstructionDestination,
     required TResult Function() invalidCInstructionComputation,
     required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
   }) {
     return invalidCInstructionJump();
   }
@@ -918,6 +959,7 @@ class _$InvalidCInstructionJumpFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
   }) {
     return invalidCInstructionJump?.call();
   }
@@ -931,6 +973,7 @@ class _$InvalidCInstructionJumpFailure
     TResult Function()? invalidCInstructionDestination,
     TResult Function()? invalidCInstructionComputation,
     TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionJump != null) {
@@ -952,6 +995,7 @@ class _$InvalidCInstructionJumpFailure
         invalidCInstructionComputation,
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
   }) {
     return invalidCInstructionJump(this);
   }
@@ -969,6 +1013,7 @@ class _$InvalidCInstructionJumpFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
   }) {
     return invalidCInstructionJump?.call(this);
   }
@@ -986,6 +1031,7 @@ class _$InvalidCInstructionJumpFailure
         invalidCInstructionComputation,
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     required TResult orElse(),
   }) {
     if (invalidCInstructionJump != null) {
@@ -998,4 +1044,150 @@ class _$InvalidCInstructionJumpFailure
 abstract class InvalidCInstructionJumpFailure implements Failure {
   const factory InvalidCInstructionJumpFailure() =
       _$InvalidCInstructionJumpFailure;
+}
+
+/// @nodoc
+abstract class $InvalidFilePathFailureCopyWith<$Res> {
+  factory $InvalidFilePathFailureCopyWith(InvalidFilePathFailure value,
+          $Res Function(InvalidFilePathFailure) then) =
+      _$InvalidFilePathFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvalidFilePathFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements $InvalidFilePathFailureCopyWith<$Res> {
+  _$InvalidFilePathFailureCopyWithImpl(InvalidFilePathFailure _value,
+      $Res Function(InvalidFilePathFailure) _then)
+      : super(_value, (v) => _then(v as InvalidFilePathFailure));
+
+  @override
+  InvalidFilePathFailure get _value => super._value as InvalidFilePathFailure;
+}
+
+/// @nodoc
+
+class _$InvalidFilePathFailure implements InvalidFilePathFailure {
+  const _$InvalidFilePathFailure();
+
+  @override
+  String toString() {
+    return 'Failure.InvalidFilePath()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InvalidFilePathFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notInstruction,
+    required TResult Function() valueTooLarge,
+    required TResult Function() invalidAInstructionValue,
+    required TResult Function() invalidCInstructionDestination,
+    required TResult Function() invalidCInstructionComputation,
+    required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
+  }) {
+    return InvalidFilePath();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? notInstruction,
+    TResult Function()? valueTooLarge,
+    TResult Function()? invalidAInstructionValue,
+    TResult Function()? invalidCInstructionDestination,
+    TResult Function()? invalidCInstructionComputation,
+    TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
+  }) {
+    return InvalidFilePath?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notInstruction,
+    TResult Function()? valueTooLarge,
+    TResult Function()? invalidAInstructionValue,
+    TResult Function()? invalidCInstructionDestination,
+    TResult Function()? invalidCInstructionComputation,
+    TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
+    required TResult orElse(),
+  }) {
+    if (InvalidFilePath != null) {
+      return InvalidFilePath();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotInstructionFailure value) notInstruction,
+    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
+    required TResult Function(InvalidAInstructionValueFailure value)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationFailure value)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationFailure value)
+        invalidCInstructionComputation,
+    required TResult Function(InvalidCInstructionJumpFailure value)
+        invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
+  }) {
+    return InvalidFilePath(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NotInstructionFailure value)? notInstruction,
+    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
+    TResult Function(InvalidAInstructionValueFailure value)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationFailure value)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationFailure value)?
+        invalidCInstructionComputation,
+    TResult Function(InvalidCInstructionJumpFailure value)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
+  }) {
+    return InvalidFilePath?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotInstructionFailure value)? notInstruction,
+    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
+    TResult Function(InvalidAInstructionValueFailure value)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationFailure value)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationFailure value)?
+        invalidCInstructionComputation,
+    TResult Function(InvalidCInstructionJumpFailure value)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
+    required TResult orElse(),
+  }) {
+    if (InvalidFilePath != null) {
+      return InvalidFilePath(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidFilePathFailure implements Failure {
+  const factory InvalidFilePathFailure() = _$InvalidFilePathFailure;
 }

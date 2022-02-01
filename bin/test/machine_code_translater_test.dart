@@ -10,7 +10,7 @@ import '../service_locator.dart';
 import '../typedefs.dart';
 
 void main() {
-  configureDependencies();
+  configureDependencies(Env.test);
   final machineCodeTranslator = sl<MachineCodeTranslator>();
 
   void translatorTableTest({

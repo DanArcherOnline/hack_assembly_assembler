@@ -10,7 +10,7 @@ import '../service_locator.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
-  configureDependencies();
+  configureDependencies(Env.test);
   late AInstructionParser aInstructionParser;
   late final aInstruction = AInstruction(value: '');
 

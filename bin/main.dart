@@ -12,15 +12,14 @@ const pathArgName = 'path';
 const pathArgAbbr = 'p';
 
 void main(List<String> arguments) {
-  configureDependencies();
+  configureDependencies(Env.dev);
   final path = getFileName(arguments);
   final fileIn = File(path);
-  final fileOut = File(fileIn.path.replaceFirst('.asm', '.hack'));
-  print('🤮 fileOut.path: ${fileOut.path}');
   final lineProcesser = sl<LineProcesser>();
   final assemblyParser = sl<AssemblyParser>();
   final machineCodeTranslator = sl<MachineCodeTranslator>();
-  final writer = MachineCodeWriter(file: fileOut);
+  //TODO catch writer instantiation errors and deal with them accordingly
+  final writer = sl.get<MachineCodeWriter>(param1: fileIn.path);
   var lineNumber = 1;
   lineProcesser.processLines(
     file: fileIn,
@@ -28,7 +27,7 @@ void main(List<String> arguments) {
       print('Line No. $lineNumber');
       final failureOrAssemblyInstruction = assemblyParser.parse(line);
       failureOrAssemblyInstruction.fold(
-        (failure) => failure.map(
+        (failure) => failure.maybeMap(
           notInstruction: (f) {
             print('was not an instruction');
           },
@@ -47,6 +46,9 @@ void main(List<String> arguments) {
           invalidCInstructionJump: (f) {
             print('C instructions jump is incorrect');
           },
+          orElse: () {
+            print('An unexpected error has occured. Sorry about that...');
+          },
         ),
         (instruction) {
           final failureOrMachineCodeInstruction =
@@ -62,65 +64,18 @@ void main(List<String> arguments) {
       lineNumber++;
     },
   );
-
-  // lineProcesser.processLines(
-  //     file: file,
-  //     lineOperation: (line) {
-  //       final failureOrInstruction = assemblyParser.parse(line);
-  //       final machineCodeTranslator = sl<MachineCodeTranslator>();
-  //       failureOrInstruction.fold(
-  //         (failure) => failure.map(
-  //           notInstruction: (f) {
-  //             print('was not an instruction');
-  //           },
-  //           valueTooLarge: (f) {
-  //             print('the value was too large');
-  //           },
-  //           invalidAInstructionValue: (f) {
-  //             print('A instructions value is incorrect');
-  //           },
-  //           invalidCInstructionDestination: (f) {
-  //             print('C instructions destination is incorrect');
-  //           },
-  //           invalidCInstructionComputation: (f) {
-  //             print('C instructions computation is incorrect');
-  //           },
-  //           invalidCInstructionJump: (f) {
-  //             print('C instructions jump is incorrect');
-  //           },
-  //         ),
-  //         (instruction) {
-  //           instruction.map(
-  //             aInstruction: (a) {
-  //               print('---A instruction---');
-  //               print('Value: ${a.value}');
-  //             },
-  //             cInstruction: (c) {
-  //               print('---C Instruction---');
-  //               print('Destination: ${c.destination}');
-  //               print('Computation: ${c.computation}');
-  //               print('Jump: ${c.jump}');
-  //             },
-  //           );
-  //         },
-  //       );
-  //       failureOrInstruction.map((assemblyInstruction) {
-  //         final failureOrBinary =
-  //             machineCodeTranslator.translate(assemblyInstruction);
-  //         final binary = failureOrBinary.getOrElse(
-  //           () => throw Exception('could not translate instruction to binary'),
-  //         );
-  //         print(binary);
-  //       });
-  //     });
 }
 
-String getFileName(List<String> arguments) {
+ArgResults getArgs(List<String> arguments) {
   final argsParser = ArgParser();
   argsParser.addOption(
     pathArgName,
     abbr: pathArgAbbr,
   );
   final args = argsParser.parse(arguments);
-  return args[pathArgName];
+  return args;
 }
+
+String getFileName(List<String> arguments) => getArgs(arguments)[pathArgName];
+String getEnvironment(List<String> arguments) =>
+    getArgs(arguments)[pathArgName];

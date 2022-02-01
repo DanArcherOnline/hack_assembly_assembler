@@ -13,7 +13,7 @@ import 'a_instruction_parser_test.mocks.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
-  configureDependencies();
+  configureDependencies(Env.test);
   late AssemblyParser assemblyParser;
   late MockAInstructionParser aInstructionParser;
   late MockCInstructionParser cInstructionParser;

@@ -14,7 +14,7 @@ class Operation {
 
 @GenerateMocks([Operation])
 void main() {
-  configureDependencies();
+  configureDependencies(Env.test);
   final lineProcesser = sl<LineProcesser>();
 
   group('processLine', () {

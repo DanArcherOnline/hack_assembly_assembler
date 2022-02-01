@@ -11,4 +11,11 @@ final sl = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-void configureDependencies() => $initGetIt(sl);
+void configureDependencies(Env env) {
+  $initGetIt(sl, environment: env.name);
+}
+
+enum Env {
+  dev,
+  test,
+}

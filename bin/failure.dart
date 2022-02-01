@@ -14,4 +14,5 @@ class Failure with _$Failure {
       InvalidCInstructionComputationFailure;
   const factory Failure.invalidCInstructionJump() =
       InvalidCInstructionJumpFailure;
+  const factory Failure.InvalidFilePath() = InvalidFilePathFailure;
 }
