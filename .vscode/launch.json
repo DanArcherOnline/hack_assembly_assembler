@@ -17,6 +17,7 @@
             "name": "Convert Add.asm",
             "request": "launch",
             "type": "dart",
+            "program": "bin/main.dart",
             "args": [
                 "-p",
                 "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/add/Add.asm"
