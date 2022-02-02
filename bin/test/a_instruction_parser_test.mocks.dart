@@ -33,7 +33,7 @@ class MockSymbols extends _i1.Mock implements _i3.Symbols {
               returnValue: _FakeEither_0<_i4.Failure, String>())
           as _i2.Either<_i4.Failure, String>);
   @override
-  void put(String? key, dynamic symbol) =>
+  void put(String? key, String? symbol) =>
       super.noSuchMethod(Invocation.method(#put, [key, symbol]),
           returnValueForMissingStub: null);
 }

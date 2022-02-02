@@ -34,7 +34,7 @@ class Symbols {
     }
   }
 
-  void put(String key, symbol) {
+  void put(String key, String symbol) {
     _symbols.putIfAbsent(key, () => _symbols[key] = symbol);
   }
 

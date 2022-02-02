@@ -67,7 +67,6 @@ void main() {
       },
     );
 
-    //TODO maybe change
     test(
       'should return an AInstruction from AInstrutionParser '
       'when the line parameter contains a symbol',

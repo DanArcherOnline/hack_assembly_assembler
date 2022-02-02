@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:mockito/annotations.dart';
 import 'package:test/test.dart';
 
-import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
 import '../c_instruction_parser.dart';
 import '../environment.dart';
@@ -10,7 +8,6 @@ import '../failure.dart';
 import '../service_locator.dart';
 import '../typedefs.dart';
 
-@GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
   configureDependencies(Env.test);
   late CInstructionParser cInstructionParser;

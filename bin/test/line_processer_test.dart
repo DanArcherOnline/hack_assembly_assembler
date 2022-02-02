@@ -24,9 +24,9 @@ void main() {
       'when processLine is called',
       () async {
         //arrange
-        const fixturesLine1 = '1';
-        const fixturesLine2 = '12';
-        const fixturesLine3 = '123';
+        const fixturesLine1 = '@256';
+        const fixturesLine2 = 'D=A';
+        const fixturesLine3 = '0;JMP';
         final fixtureFilePath =
             '${Directory.current.path}/bin/test/fixtures/fixture_data.asm';
         final file = File(fixtureFilePath);
