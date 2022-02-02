@@ -5,10 +5,8 @@
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
-import '../a_instruction_parser.dart' as _i3;
-import '../assembly_instruction.dart' as _i5;
-import '../c_instruction_parser.dart' as _i6;
 import '../failure.dart' as _i4;
+import '../symbols.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -21,44 +19,21 @@ import '../failure.dart' as _i4;
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-/// A class which mocks [AInstructionParser].
+/// A class which mocks [Symbols].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAInstructionParser extends _i1.Mock
-    implements _i3.AInstructionParser {
-  MockAInstructionParser() {
+class MockSymbols extends _i1.Mock implements _i3.Symbols {
+  MockSymbols() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  bool isValid(String? code) => (super
-          .noSuchMethod(Invocation.method(#isValid, [code]), returnValue: false)
-      as bool);
+  _i2.Either<_i4.Failure, String> get(String? key) =>
+      (super.noSuchMethod(Invocation.method(#get, [key]),
+              returnValue: _FakeEither_0<_i4.Failure, String>())
+          as _i2.Either<_i4.Failure, String>);
   @override
-  _i2.Either<_i4.Failure, _i5.AssemblyInstruction> parse(String? code) =>
-      (super.noSuchMethod(Invocation.method(#parse, [code]),
-              returnValue:
-                  _FakeEither_0<_i4.Failure, _i5.AssemblyInstruction>())
-          as _i2.Either<_i4.Failure, _i5.AssemblyInstruction>);
-}
-
-/// A class which mocks [CInstructionParser].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockCInstructionParser extends _i1.Mock
-    implements _i6.CInstructionParser {
-  MockCInstructionParser() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i2.Either<_i4.Failure, _i5.AssemblyInstruction> parse(String? code) =>
-      (super.noSuchMethod(Invocation.method(#parse, [code]),
-              returnValue:
-                  _FakeEither_0<_i4.Failure, _i5.AssemblyInstruction>())
-          as _i2.Either<_i4.Failure, _i5.AssemblyInstruction>);
-  @override
-  bool isValid(String? code) => (super
-          .noSuchMethod(Invocation.method(#isValid, [code]), returnValue: false)
-      as bool);
+  void put(String? key, dynamic symbol) =>
+      super.noSuchMethod(Invocation.method(#put, [key, symbol]),
+          returnValueForMissingStub: null);
 }

@@ -5,9 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "hack_to_machine_assmebler",
+            "name": "Unit Tests",
+            "type": "dart",
             "request": "launch",
-            "type": "dart"
+            "program": "bin/test/",
+            "args": [
+                "--chain-stack-traces"
+            ],
+        },
+        {
+            "name": "Convert Add.asm",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "-p",
+                "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/add/Add.asm"
+            ],
         }
     ]
 }

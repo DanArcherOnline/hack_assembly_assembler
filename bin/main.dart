@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 
 import 'assembly_parser.dart';
+import 'environment.dart';
 import 'line_processer.dart';
 import 'machine_code_translator.dart';
 import 'machine_code_writer.dart';

@@ -14,8 +14,7 @@ class AssemblyParser {
   AssemblyParser(this.aInstructionParser, this.cInstructionParser);
 
   FailureOrInstruction parse(String line) {
-    final code = line.replaceAll(' ', '');
-
+    final code = minifyCode(line);
     if (aInstructionParser.isValid(code)) {
       return aInstructionParser.parse(code);
     }
@@ -23,5 +22,12 @@ class AssemblyParser {
       return cInstructionParser.parse(code);
     }
     return left(NotInstructionFailure());
+  }
+
+  String minifyCode(String line) {
+    final commentStartIndex = line.indexOf('//');
+    final commentlessCode =
+        commentStartIndex != -1 ? line.substring(0, commentStartIndex) : line;
+    return commentlessCode.replaceAll(' ', '');
   }
 }

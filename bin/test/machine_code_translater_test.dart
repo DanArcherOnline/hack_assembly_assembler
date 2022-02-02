@@ -3,6 +3,7 @@ import 'package:test/test.dart';
 
 import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
+import '../environment.dart';
 import '../failure.dart';
 import '../machine_code_instruction.dart';
 import '../machine_code_translator.dart';

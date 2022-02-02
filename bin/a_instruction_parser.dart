@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'assembly_instruction.dart';
 import 'failure.dart';
 import 'instruction_parser.dart';
+import 'symbols.dart';
 import 'typedefs.dart';
 
 @injectable
@@ -12,23 +13,44 @@ class AInstructionParser implements InstructionParser {
   //TODO change to correct max value
   static const maxVal = 1000000;
 
+  final Symbols _symbols;
+
+  AInstructionParser({required Symbols symbols}) : _symbols = symbols;
+
   @override
   bool isValid(String code) => code.startsWith(aInstructionSymbol);
 
+  bool _isValue(String code) => RegExp(r'^[0-9]+$').hasMatch(code);
+
   @override
   FailureOrInstruction parse(String code) {
+    final extractedCode = _extract(code);
+    if (extractedCode.isEmpty) {
+      return left(InvalidAInstructionValueFailure());
+    }
+    if (_isValue(extractedCode)) {
+      return _parseValue(extractedCode);
+    }
+    return _parseSymbol(extractedCode);
+  }
+
+  Either<Failure, AInstruction> _parseValue(String valString) {
     late int val;
-    final valString = code.substring(1);
     try {
       val = int.parse(valString);
     } catch (e) {
       return left(InvalidAInstructionValueFailure());
     }
     if (_isOverMaxValue(val)) {
-      return left(ValueTooLargeFailure());
+      return left(InvalidAInstructionValueFailure());
     }
     return right(AInstruction(value: valString));
   }
+
+  Either<Failure, AInstruction> _parseSymbol(String symbolKey) =>
+      _symbols.get(symbolKey).map((value) => AInstruction(value: value));
+
+  String _extract(String code) => code.substring(1);
 
   bool _isOverMaxValue(int val) => val > maxVal;
 }

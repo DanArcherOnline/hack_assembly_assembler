@@ -2,6 +2,7 @@ import 'package:file/memory.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
+import '../environment.dart';
 import '../failure.dart';
 import '../machine_code_instruction.dart';
 import '../machine_code_writer.dart';

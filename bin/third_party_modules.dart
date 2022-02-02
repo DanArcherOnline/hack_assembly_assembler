@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class ThirdPartyModules {
-  @Environment('dev')
+  @dev
   @lazySingleton
   FileSystem get localFileSystem => LocalFileSystem();
 }

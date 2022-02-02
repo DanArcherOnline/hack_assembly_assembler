@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import '../environment.dart';
 import '../line_processer.dart';
 import '../service_locator.dart';
 import 'line_processer_test.mocks.dart';

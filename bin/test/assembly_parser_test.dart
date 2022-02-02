@@ -7,9 +7,10 @@ import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
 import '../assembly_parser.dart';
 import '../c_instruction_parser.dart';
+import '../environment.dart';
 import '../failure.dart';
 import '../service_locator.dart';
-import 'a_instruction_parser_test.mocks.dart';
+import 'assembly_parser_test.mocks.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
@@ -66,6 +67,25 @@ void main() {
       },
     );
 
+    //TODO maybe change
+    test(
+      'should return an AInstruction from AInstrutionParser '
+      'when the line parameter contains a symbol',
+      () async {
+        //arrange
+        final line = '@R3';
+        when(aInstructionParser.isValid(any)).thenReturn(true);
+        when(cInstructionParser.isValid(any)).thenReturn(false);
+        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        //act
+        final instruction = assemblyParser.parse(line);
+        //assert
+        expect(instruction, right(aInstruction));
+        verify(aInstructionParser.parse(line)).called(1);
+        verifyNever(cInstructionParser.parse(any));
+      },
+    );
+
     test(
       'should return an AInstruction from AInstrutionParser even '
       'when the line parameter contains white space',
@@ -86,11 +106,48 @@ void main() {
     );
 
     test(
+      'should return an AInstruction from AInstrutionParser even '
+      'when the line parameter has no value',
+      () async {
+        //arrange
+        final line = '@';
+        when(aInstructionParser.isValid(any)).thenReturn(true);
+        when(cInstructionParser.isValid(any)).thenReturn(false);
+        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        //act
+        final instruction = assemblyParser.parse(line);
+        //assert
+        expect(instruction, right(aInstruction));
+        verify(aInstructionParser.parse(line)).called(1);
+        verifyNever(cInstructionParser.parse(any));
+      },
+    );
+
+    test(
       'should return an CInstruction from CInstrutionParser even '
       'when the line parameter contains white space',
       () async {
         //arrange
         final line = '   D   =    M     ';
+        final trimedLine = 'D=M';
+        when(aInstructionParser.isValid(any)).thenReturn(false);
+        when(cInstructionParser.isValid(any)).thenReturn(true);
+        when(cInstructionParser.parse(any)).thenReturn(Right(cInstruction));
+        //act
+        final instruction = assemblyParser.parse(line);
+        //assert
+        expect(instruction, right(cInstruction));
+        verify(cInstructionParser.parse(trimedLine)).called(1);
+        verifyNever(aInstructionParser.parse(any));
+      },
+    );
+
+    test(
+      'should return an CInstruction from CInstrutionParser even '
+      'when the line parameter contains comments',
+      () async {
+        //arrange
+        final line = 'D=M    //this is not code and should be //ignored!';
         final trimedLine = 'D=M';
         when(aInstructionParser.isValid(any)).thenReturn(false);
         when(cInstructionParser.isValid(any)).thenReturn(true);

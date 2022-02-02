@@ -1,30 +1,33 @@
 import 'package:dartz/dartz.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import '../a_instruction_parser.dart';
 import '../assembly_instruction.dart';
-import '../c_instruction_parser.dart';
+import '../environment.dart';
 import '../failure.dart';
 import '../service_locator.dart';
+import '../symbols.dart';
 
-@GenerateMocks([AInstructionParser, CInstructionParser])
+@GenerateMocks([Symbols])
 void main() {
   configureDependencies(Env.test);
   late AInstructionParser aInstructionParser;
-  late final aInstruction = AInstruction(value: '');
+  late Symbols symbols;
 
   setUp(() {
-    aInstructionParser = sl<AInstructionParser>();
+    symbols = sl<Symbols>();
+    aInstructionParser = AInstructionParser(symbols: symbols);
   });
 
   group('isValid', () {
     test(
       'should return true when first character '
-      'is the ${AInstructionParser.aInstructionSymbol} symbol',
+      'is the @ symbol',
       () async {
         //arrange
-        final code = '${AInstructionParser.aInstructionSymbol}8';
+        final code = '@8';
         //act
         final isValidAInstruction = aInstructionParser.isValid(code);
         //assert
@@ -34,7 +37,7 @@ void main() {
 
     test(
       'should return false when first character '
-      'is not the ${AInstructionParser.aInstructionSymbol} symbol',
+      'is not the @ symbol',
       () async {
         //arrange
         final code = 'M=D-1';
@@ -47,6 +50,7 @@ void main() {
   });
 
   group('parse', () {
+    //Values
     test(
       'should return an AInstruction with its value '
       'when the value is within the maximum range',
@@ -62,7 +66,7 @@ void main() {
     );
 
     test(
-      'should return a ValueTooLargeFailure '
+      'should return an InvalidAInstructionValueFailure '
       'when the value is beyond the maximum range',
       () async {
         //arrange
@@ -70,7 +74,40 @@ void main() {
         //act
         final failure = aInstructionParser.parse(beyondMaxValCode);
         //assert
-        expect(failure, left(ValueTooLargeFailure()));
+        expect(failure, left(InvalidAInstructionValueFailure()));
+      },
+    );
+
+    //Symbols
+    test(
+      'should return an AInstruction with the value that corrasponds to '
+      'the given key in Symbols when Symbols contains the given key/pair value',
+      () async {
+        //arrange
+        final code = '@R15';
+        final extractedCode = 'R15';
+        final expectedAInstruction = AInstruction(value: '15');
+        when(symbols.get(extractedCode)).thenAnswer((_) => right('15'));
+        //act
+        final instruction = aInstructionParser.parse(code);
+        //assert
+        expect(instruction, right(expectedAInstruction));
+      },
+    );
+
+    test(
+      'should return a SymbolDoesNotExistFailure '
+      'when the symbol given does not exist in Symbols',
+      () async {
+        //arrange
+        final code = '@IShouldNotExist';
+        final extractedCode = 'IShouldNotExist';
+        when(symbols.get(extractedCode))
+            .thenAnswer((_) => left(SymbolDoesNotExistFailure()));
+        //act
+        final instruction = aInstructionParser.parse(code);
+        //assert
+        expect(instruction, left(SymbolDoesNotExistFailure()));
       },
     );
   });

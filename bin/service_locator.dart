@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import 'environment.dart';
 import 'service_locator.config.dart';
 
 final sl = GetIt.instance;
@@ -13,9 +14,4 @@ final sl = GetIt.instance;
 )
 void configureDependencies(Env env) {
   $initGetIt(sl, environment: env.name);
-}
-
-enum Env {
-  dev,
-  test,
 }
