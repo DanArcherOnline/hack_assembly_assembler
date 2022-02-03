@@ -19,6 +19,34 @@ void main() {
     symbols = Symbols();
   });
 
+  group('isValidKey', () {
+    test(
+      'should return true when the given key '
+      'starts with an alphabetical character',
+      () async {
+        //arrange
+        final validKey = 'totally_valid.key@1';
+        //act
+        final isValidKey = symbols.isValidKey(validKey);
+        //assert
+        expect(isValidKey, true);
+      },
+    );
+
+    test(
+      'should return false when the given key '
+      'starts with an non-alphabetical character',
+      () async {
+        //arrange
+        final invalidKey = '-totally_valid.key@1';
+        //act
+        final isValidKey = symbols.isValidKey(invalidKey);
+        //assert
+        expect(isValidKey, false);
+      },
+    );
+  });
+
   group('put', () {
     test(
       'should put a symbol in the symbols table '
