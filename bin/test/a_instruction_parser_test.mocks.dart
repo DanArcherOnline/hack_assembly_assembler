@@ -19,6 +19,8 @@ import '../symbols.dart' as _i3;
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
+class _FakeOption_1<A> extends _i1.Fake implements _i2.Option<A> {}
+
 /// A class which mocks [Symbols].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -33,7 +35,8 @@ class MockSymbols extends _i1.Mock implements _i3.Symbols {
               returnValue: _FakeEither_0<_i4.Failure, String>())
           as _i2.Either<_i4.Failure, String>);
   @override
-  void put(String? key, String? symbol) =>
-      super.noSuchMethod(Invocation.method(#put, [key, symbol]),
-          returnValueForMissingStub: null);
+  _i2.Option<_i4.Failure> put(String? key, String? symbol) =>
+      (super.noSuchMethod(Invocation.method(#put, [key, symbol]),
+              returnValue: _FakeOption_1<_i4.Failure>())
+          as _i2.Option<_i4.Failure>);
 }

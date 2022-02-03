@@ -9,13 +9,78 @@ import '../symbols.dart';
 void main() {
   configureDependencies(Env.test);
   late Symbols symbols;
-  final customSymbolKey = 'custom.symbol';
-  final customSymbolValue = '4321';
+  final preExistingCustomSymbolKey = 'custom.symbol';
+  final preExistingCustomSymbolValue = '4321';
   final nonExistantSymbolKey = 'i.am.not.here';
+  final firstFreeSymbolAddressValue =
+      Symbols.customSymbolStartingVal.toString();
 
-  setUpAll(() {
+  setUp(() {
     symbols = Symbols();
-    symbols.put(customSymbolKey, customSymbolValue);
+  });
+
+  group('put', () {
+    test(
+      'should put a symbol in the symbols table '
+      'when the symbol key does not already exist',
+      () async {
+        //arrange
+        final newLabelKey = 'new.label';
+        final newLabelValue = '6';
+        //act
+        symbols.put(newLabelKey, newLabelValue);
+        final failureOrSymbolValue = symbols.get(newLabelKey);
+        //assert
+        expect(failureOrSymbolValue, right(newLabelValue));
+      },
+    );
+    test(
+      'should put a symbol in the symbols table and not the '
+      'affect Symbols internal custom symbol value counter when the '
+      'symbol key does not already exist and is put in the Symbols table',
+      () async {
+        //arrange
+        final newLabelKey = 'new.label';
+        final newLabelValue = '6';
+        final firstCustomSymbolKey = 'firstCustomSymbol';
+        final unaffectedCustomSymbolVal = firstFreeSymbolAddressValue;
+        //act
+        symbols.put(newLabelKey, newLabelValue);
+        final failureOrSymbolValue = symbols.get(firstCustomSymbolKey);
+        //assert
+        expect(failureOrSymbolValue, right(unaffectedCustomSymbolVal));
+      },
+    );
+
+    test(
+      'should return none '
+      'when the symbol key does not already exist',
+      () async {
+        //arrange
+        final newLabelKey = 'new.label';
+        final newLabelValue = '6';
+        //act
+        final failure = symbols.put(newLabelKey, newLabelValue);
+        //assert
+        expect(failure, none());
+      },
+    );
+
+    test(
+      'should return an InvalidLabelFailure '
+      'when the symbol key already exists',
+      () async {
+        //arrange
+        //act
+        symbols.put(preExistingCustomSymbolKey, preExistingCustomSymbolValue);
+        final failureOrSymbolValue = symbols.put(
+          preExistingCustomSymbolKey,
+          preExistingCustomSymbolValue,
+        );
+        //assert
+        expect(failureOrSymbolValue, some(InvalidLabelFailure()));
+      },
+    );
   });
 
   group('get', () {
@@ -35,56 +100,46 @@ void main() {
 
     test(
       'should return the value of the given key '
-      'when Symbols contains the custom key/pair value',
+      'when Symbols already contains the custom key/pair value',
       () async {
         //arrange
+        symbols.put(preExistingCustomSymbolKey, preExistingCustomSymbolValue);
         //act
-        final failureOrSymbolValue = symbols.get(customSymbolKey);
+        final failureOrSymbolValue = symbols.get(preExistingCustomSymbolKey);
         //assert
-        expect(failureOrSymbolValue, right(customSymbolValue));
+        expect(failureOrSymbolValue, right(preExistingCustomSymbolValue));
       },
     );
 
     test(
-      'should return SymbolDoesNotExistFailure '
-      'when Symbols do not exist',
+      'should place the new symbol in the symbols table, '
+      'paired with the first free available symbol address value, '
+      'and return that value,'
+      'when Symbols does not exist and it is the first custom symbol',
       () async {
         //arrange
         //act
         final failureOrSymbolValue = symbols.get(nonExistantSymbolKey);
         //assert
-        expect(failureOrSymbolValue, left(SymbolDoesNotExistFailure()));
-      },
-    );
-  });
-
-  group('put', () {
-    test(
-      'should put a symbol in the symbol map '
-      'when the symbol key does not already exist',
-      () async {
-        //arrange
-        final newSymbolKey = 'newGuy';
-        final newSymbolValue = '987';
-        //act
-        symbols.put(newSymbolKey, newSymbolValue);
-        final failureOrSymbolValue = symbols.get(newSymbolKey);
-        //assert
-        expect(failureOrSymbolValue, right(newSymbolValue));
+        expect(failureOrSymbolValue, right(firstFreeSymbolAddressValue));
       },
     );
 
     test(
-      'should not do anything '
-      'when the symbol key already exists',
+      'should place the new symbol in the symbols table, '
+      'paired with the nth free available symbol address value, '
+      'and return that value,'
+      'when the symbol does not exist',
       () async {
         //arrange
+        final thirdSymbolKey = 'third';
+        final thirdFreeSymbolAddressValue = '18';
+        symbols.get('first');
+        symbols.get('second');
         //act
-        void putFunc() => symbols.put(customSymbolKey, customSymbolValue);
-        final failureOrSymbolValue = symbols.get(customSymbolKey);
+        final failureOrSymbolValue = symbols.get(thirdSymbolKey);
         //assert
-        expect(putFunc, isNot(throwsA(anything)));
-        expect(failureOrSymbolValue, right(customSymbolValue));
+        expect(failureOrSymbolValue, right(thirdFreeSymbolAddressValue));
       },
     );
   });

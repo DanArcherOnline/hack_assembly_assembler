@@ -48,6 +48,10 @@ class _$FailureTearOff {
   SymbolDoesNotExistFailure symbolDoesNotExist() {
     return const SymbolDoesNotExistFailure();
   }
+
+  InvalidLabelFailure invalidLabel() {
+    return const InvalidLabelFailure();
+  }
 }
 
 /// @nodoc
@@ -65,6 +69,7 @@ mixin _$Failure {
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +82,7 @@ mixin _$Failure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +95,7 @@ mixin _$Failure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +114,7 @@ mixin _$Failure {
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -123,6 +131,7 @@ mixin _$Failure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -139,6 +148,7 @@ mixin _$Failure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -207,6 +217,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return notInstruction();
   }
@@ -222,6 +233,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return notInstruction?.call();
   }
@@ -237,6 +249,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (notInstruction != null) {
@@ -261,6 +274,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return notInstruction(this);
   }
@@ -280,6 +294,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return notInstruction?.call(this);
   }
@@ -299,6 +314,7 @@ class _$NotInstructionFailure implements NotInstructionFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (notInstruction != null) {
@@ -360,6 +376,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return valueTooLarge();
   }
@@ -375,6 +392,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return valueTooLarge?.call();
   }
@@ -390,6 +408,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (valueTooLarge != null) {
@@ -414,6 +433,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return valueTooLarge(this);
   }
@@ -433,6 +453,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return valueTooLarge?.call(this);
   }
@@ -452,6 +473,7 @@ class _$ValueTooLargeFailure implements ValueTooLargeFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (valueTooLarge != null) {
@@ -517,6 +539,7 @@ class _$InvalidAInstructionValueFailure
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return invalidAInstructionValue();
   }
@@ -532,6 +555,7 @@ class _$InvalidAInstructionValueFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return invalidAInstructionValue?.call();
   }
@@ -547,6 +571,7 @@ class _$InvalidAInstructionValueFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidAInstructionValue != null) {
@@ -571,6 +596,7 @@ class _$InvalidAInstructionValueFailure
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidAInstructionValue(this);
   }
@@ -590,6 +616,7 @@ class _$InvalidAInstructionValueFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidAInstructionValue?.call(this);
   }
@@ -609,6 +636,7 @@ class _$InvalidAInstructionValueFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidAInstructionValue != null) {
@@ -676,6 +704,7 @@ class _$InvalidCInstructionDestinationFailure
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return invalidCInstructionDestination();
   }
@@ -691,6 +720,7 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return invalidCInstructionDestination?.call();
   }
@@ -706,6 +736,7 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionDestination != null) {
@@ -730,6 +761,7 @@ class _$InvalidCInstructionDestinationFailure
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionDestination(this);
   }
@@ -749,6 +781,7 @@ class _$InvalidCInstructionDestinationFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionDestination?.call(this);
   }
@@ -768,6 +801,7 @@ class _$InvalidCInstructionDestinationFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionDestination != null) {
@@ -835,6 +869,7 @@ class _$InvalidCInstructionComputationFailure
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return invalidCInstructionComputation();
   }
@@ -850,6 +885,7 @@ class _$InvalidCInstructionComputationFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return invalidCInstructionComputation?.call();
   }
@@ -865,6 +901,7 @@ class _$InvalidCInstructionComputationFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionComputation != null) {
@@ -889,6 +926,7 @@ class _$InvalidCInstructionComputationFailure
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionComputation(this);
   }
@@ -908,6 +946,7 @@ class _$InvalidCInstructionComputationFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionComputation?.call(this);
   }
@@ -927,6 +966,7 @@ class _$InvalidCInstructionComputationFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionComputation != null) {
@@ -993,6 +1033,7 @@ class _$InvalidCInstructionJumpFailure
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return invalidCInstructionJump();
   }
@@ -1008,6 +1049,7 @@ class _$InvalidCInstructionJumpFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return invalidCInstructionJump?.call();
   }
@@ -1023,6 +1065,7 @@ class _$InvalidCInstructionJumpFailure
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionJump != null) {
@@ -1047,6 +1090,7 @@ class _$InvalidCInstructionJumpFailure
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionJump(this);
   }
@@ -1066,6 +1110,7 @@ class _$InvalidCInstructionJumpFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionJump?.call(this);
   }
@@ -1085,6 +1130,7 @@ class _$InvalidCInstructionJumpFailure
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionJump != null) {
@@ -1147,6 +1193,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return InvalidFilePath();
   }
@@ -1162,6 +1209,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return InvalidFilePath?.call();
   }
@@ -1177,6 +1225,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (InvalidFilePath != null) {
@@ -1201,6 +1250,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return InvalidFilePath(this);
   }
@@ -1220,6 +1270,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return InvalidFilePath?.call(this);
   }
@@ -1239,6 +1290,7 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (InvalidFilePath != null) {
@@ -1301,6 +1353,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
     required TResult Function() invalidCInstructionJump,
     required TResult Function() InvalidFilePath,
     required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
   }) {
     return symbolDoesNotExist();
   }
@@ -1316,6 +1369,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
   }) {
     return symbolDoesNotExist?.call();
   }
@@ -1331,6 +1385,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
     TResult Function()? invalidCInstructionJump,
     TResult Function()? InvalidFilePath,
     TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
     required TResult orElse(),
   }) {
     if (symbolDoesNotExist != null) {
@@ -1355,6 +1410,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
     required TResult Function(SymbolDoesNotExistFailure value)
         symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return symbolDoesNotExist(this);
   }
@@ -1374,6 +1430,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return symbolDoesNotExist?.call(this);
   }
@@ -1393,6 +1450,7 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
     TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
     if (symbolDoesNotExist != null) {
@@ -1404,4 +1462,163 @@ class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
 
 abstract class SymbolDoesNotExistFailure implements Failure {
   const factory SymbolDoesNotExistFailure() = _$SymbolDoesNotExistFailure;
+}
+
+/// @nodoc
+abstract class $InvalidLabelFailureCopyWith<$Res> {
+  factory $InvalidLabelFailureCopyWith(
+          InvalidLabelFailure value, $Res Function(InvalidLabelFailure) then) =
+      _$InvalidLabelFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvalidLabelFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements $InvalidLabelFailureCopyWith<$Res> {
+  _$InvalidLabelFailureCopyWithImpl(
+      InvalidLabelFailure _value, $Res Function(InvalidLabelFailure) _then)
+      : super(_value, (v) => _then(v as InvalidLabelFailure));
+
+  @override
+  InvalidLabelFailure get _value => super._value as InvalidLabelFailure;
+}
+
+/// @nodoc
+
+class _$InvalidLabelFailure implements InvalidLabelFailure {
+  const _$InvalidLabelFailure();
+
+  @override
+  String toString() {
+    return 'Failure.invalidLabel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InvalidLabelFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notInstruction,
+    required TResult Function() valueTooLarge,
+    required TResult Function() invalidAInstructionValue,
+    required TResult Function() invalidCInstructionDestination,
+    required TResult Function() invalidCInstructionComputation,
+    required TResult Function() invalidCInstructionJump,
+    required TResult Function() InvalidFilePath,
+    required TResult Function() symbolDoesNotExist,
+    required TResult Function() invalidLabel,
+  }) {
+    return invalidLabel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? notInstruction,
+    TResult Function()? valueTooLarge,
+    TResult Function()? invalidAInstructionValue,
+    TResult Function()? invalidCInstructionDestination,
+    TResult Function()? invalidCInstructionComputation,
+    TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
+    TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
+  }) {
+    return invalidLabel?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notInstruction,
+    TResult Function()? valueTooLarge,
+    TResult Function()? invalidAInstructionValue,
+    TResult Function()? invalidCInstructionDestination,
+    TResult Function()? invalidCInstructionComputation,
+    TResult Function()? invalidCInstructionJump,
+    TResult Function()? InvalidFilePath,
+    TResult Function()? symbolDoesNotExist,
+    TResult Function()? invalidLabel,
+    required TResult orElse(),
+  }) {
+    if (invalidLabel != null) {
+      return invalidLabel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotInstructionFailure value) notInstruction,
+    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
+    required TResult Function(InvalidAInstructionValueFailure value)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationFailure value)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationFailure value)
+        invalidCInstructionComputation,
+    required TResult Function(InvalidCInstructionJumpFailure value)
+        invalidCInstructionJump,
+    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
+    required TResult Function(SymbolDoesNotExistFailure value)
+        symbolDoesNotExist,
+    required TResult Function(InvalidLabelFailure value) invalidLabel,
+  }) {
+    return invalidLabel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NotInstructionFailure value)? notInstruction,
+    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
+    TResult Function(InvalidAInstructionValueFailure value)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationFailure value)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationFailure value)?
+        invalidCInstructionComputation,
+    TResult Function(InvalidCInstructionJumpFailure value)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
+    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
+  }) {
+    return invalidLabel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotInstructionFailure value)? notInstruction,
+    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
+    TResult Function(InvalidAInstructionValueFailure value)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationFailure value)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationFailure value)?
+        invalidCInstructionComputation,
+    TResult Function(InvalidCInstructionJumpFailure value)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
+    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
+    TResult Function(InvalidLabelFailure value)? invalidLabel,
+    required TResult orElse(),
+  }) {
+    if (invalidLabel != null) {
+      return invalidLabel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidLabelFailure implements Failure {
+  const factory InvalidLabelFailure() = _$InvalidLabelFailure;
 }

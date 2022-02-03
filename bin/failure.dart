@@ -16,4 +16,5 @@ class Failure with _$Failure {
       InvalidCInstructionJumpFailure;
   const factory Failure.InvalidFilePath() = InvalidFilePathFailure;
   const factory Failure.symbolDoesNotExist() = SymbolDoesNotExistFailure;
+  const factory Failure.invalidLabel() = InvalidLabelFailure;
 }

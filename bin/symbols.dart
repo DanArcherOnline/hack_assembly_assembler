@@ -32,20 +32,23 @@ class Symbols {
     'THAT': '4',
   };
 
+  static const int customSymbolStartingVal = 16;
+  int _currentCustomSymbolVal = customSymbolStartingVal;
+
   Either<Failure, String> get(String key) {
-    try {
-      final symbol = _symbols[key]!;
-      return right(symbol);
-    } catch (_) {
-      return left(SymbolDoesNotExistFailure());
+    if (_symbols.containsKey(key)) {
+      return right(_symbols[key]!);
     }
+    _symbols[key] = _currentCustomSymbolVal.toString();
+    _currentCustomSymbolVal++;
+    return right(_symbols[key]!);
   }
 
-  void put(String key, String symbol) {
-    _symbols.putIfAbsent(key, () => _symbols[key] = symbol);
-  }
-
-  String _addThenGet(String key) {
-    return '';
+  Option<Failure> put(String key, String symbol) {
+    if (_symbols.containsKey(key)) {
+      return some(InvalidLabelFailure());
+    }
+    _symbols[key] = symbol;
+    return none();
   }
 }
