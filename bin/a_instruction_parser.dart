@@ -47,10 +47,14 @@ class AInstructionParser implements InstructionParser {
     return right(AInstruction(value: valString));
   }
 
-  Either<Failure, AInstruction> _parseSymbol(String symbolKey) =>
-      _symbols.get(symbolKey).map((value) => AInstruction(value: value));
+  Either<Failure, AInstruction> _parseSymbol(String symbolKey) {
+    if (_symbols.isValidKey(symbolKey)) {
+      return _symbols.get(symbolKey).map((value) => AInstruction(value: value));
+    }
+    return left(InvalidAInstructionValueFailure());
+  }
 
-  String _extract(String code) => code.substring(1);
+  String _extract(String code) => code.replaceFirst(aInstructionSymbol, '');
 
   bool _isOverMaxValue(int val) => val > maxVal;
 }

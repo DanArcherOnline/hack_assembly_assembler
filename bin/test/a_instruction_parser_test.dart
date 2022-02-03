@@ -88,6 +88,7 @@ void main() {
         final extractedCode = 'R15';
         final expectedAInstruction = AInstruction(value: '15');
         when(symbols.get(extractedCode)).thenAnswer((_) => right('15'));
+        when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
         //act
         final instruction = aInstructionParser.parse(code);
         //assert
@@ -104,10 +105,27 @@ void main() {
         final extractedCode = 'IShouldNotExist';
         when(symbols.get(extractedCode))
             .thenAnswer((_) => left(SymbolDoesNotExistFailure()));
+        when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
+
         //act
         final instruction = aInstructionParser.parse(code);
         //assert
         expect(instruction, left(SymbolDoesNotExistFailure()));
+      },
+    );
+
+    test(
+      'should return an InvalidAInstructionFailure '
+      'when the symbol given starts with a non-alphabetical character',
+      () async {
+        //arrange
+        final invalidSymbolCode = '@/IShouldNotExist';
+        final invalidSymbolKey = '/IShouldNotExist';
+        when(symbols.isValidKey(invalidSymbolKey)).thenAnswer((_) => false);
+        //act
+        final instruction = aInstructionParser.parse(invalidSymbolCode);
+        //assert
+        expect(instruction, left(InvalidAInstructionValueFailure()));
       },
     );
   });

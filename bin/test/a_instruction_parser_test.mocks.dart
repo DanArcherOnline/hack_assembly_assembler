@@ -39,4 +39,8 @@ class MockSymbols extends _i1.Mock implements _i3.Symbols {
       (super.noSuchMethod(Invocation.method(#put, [key, symbol]),
               returnValue: _FakeOption_1<_i4.Failure>())
           as _i2.Option<_i4.Failure>);
+  @override
+  bool isValidKey(String? symbolKey) =>
+      (super.noSuchMethod(Invocation.method(#isValidKey, [symbolKey]),
+          returnValue: false) as bool);
 }

@@ -51,4 +51,7 @@ class Symbols {
     _symbols[key] = symbol;
     return none();
   }
+
+  bool isValidKey(String symbolKey) =>
+      RegExp(r'^[a-zA-Z]+.*').hasMatch(symbolKey);
 }
