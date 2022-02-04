@@ -12,10 +12,8 @@ import '../failure.dart';
 import '../label_parser.dart';
 import '../service_locator.dart';
 import '../symbols.dart';
+import 'any_named_args.dart';
 import 'assembly_parser_test.mocks.dart';
-
-Null get anyCodeArg => anyNamed('code');
-Null get anyLineNumberArg => anyNamed('lineNumber');
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
@@ -23,7 +21,6 @@ void main() {
   late AssemblyParser assemblyParser;
   late MockAInstructionParser aInstructionParser;
   late MockCInstructionParser cInstructionParser;
-  //TODO create mock
   late LabelParser labelParser;
   late final aInstruction = AInstruction(value: '');
   late final cInstruction = CInstruction(
@@ -40,7 +37,6 @@ void main() {
     assemblyParser = AssemblyParser(
       aInstructionParser,
       cInstructionParser,
-      labelParser,
     );
   });
 

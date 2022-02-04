@@ -7,7 +7,7 @@ import '../symbols.dart';
 import 'a_instruction_parser_test.mocks.dart';
 
 @module
-abstract class ThirdPartyTestModules {
+abstract class TestModules {
   @tests
   @lazySingleton
   FileSystem get memoryFileSystem => MemoryFileSystem();
