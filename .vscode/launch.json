@@ -17,7 +17,7 @@
             "name": "Convert Add.asm",
             "request": "launch",
             "type": "dart",
-            "program": "bin/main.dart",
+            "program": "bin/assembler/main.dart",
             "args": [
                 "-p",
                 "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/add/Add.asm"
@@ -27,7 +27,7 @@
             "name": "Convert Pong.asm",
             "request": "launch",
             "type": "dart",
-            "program": "bin/main.dart",
+            "program": "bin/assembler/main.dart",
             "args": [
                 "-p",
                 "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/pong/Pong.asm"

@@ -1,8 +1,8 @@
 import 'package:file/file.dart';
 import 'package:injectable/injectable.dart';
 
-import 'failure.dart';
-import 'machine_code_instruction.dart';
+import '../core/failure.dart';
+import '../translation/machine_code_instruction.dart';
 
 @injectable
 class MachineCodeWriter {

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../core/failure.dart';
+import '../core/typedefs.dart';
 import 'assembly_instruction.dart';
-import 'failure.dart';
 import 'instruction_parser.dart';
-import 'typedefs.dart';
 
 @injectable
 class CInstructionParser implements InstructionParser {

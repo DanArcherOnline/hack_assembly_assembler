@@ -1,4 +1,4 @@
-import 'typedefs.dart';
+import '../core/typedefs.dart';
 
 abstract class InstructionParser {
   FailureOrInstruction parse({

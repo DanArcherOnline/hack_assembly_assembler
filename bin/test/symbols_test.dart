@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
-import '../environment.dart';
-import '../failure.dart';
-import '../service_locator.dart';
-import '../symbols.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/parsing/symbols.dart';
 
 void main() {
   configureDependencies(Env.test);

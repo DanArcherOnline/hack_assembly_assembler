@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 
-import 'typedefs.dart';
+import '../core/typedefs.dart';
 
 @lazySingleton
 class LineProcesser {

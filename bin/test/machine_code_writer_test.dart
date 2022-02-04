@@ -2,11 +2,11 @@ import 'package:file/memory.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import '../environment.dart';
-import '../failure.dart';
-import '../machine_code_instruction.dart';
-import '../machine_code_writer.dart';
-import '../service_locator.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/io/machine_code_writer.dart';
+import '../assembler/translation/machine_code_instruction.dart';
 
 void main() {
   configureDependencies(Env.test);

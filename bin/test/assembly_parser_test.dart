@@ -1,17 +1,22 @@
+// import 'package:dartz/dartz.dart';
+// import 'package:mockito/annotations.dart';
+// import 'package:mockito/mockito.dart';
+// import 'package:test/test.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../a_instruction_parser.dart';
-import '../assembly_instruction.dart';
-import '../assembly_parser.dart';
-import '../c_instruction_parser.dart';
-import '../environment.dart';
-import '../failure.dart';
-import '../label_parser.dart';
-import '../service_locator.dart';
-import '../symbols.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/parsing/a_instruction_parser.dart';
+import '../assembler/parsing/assembly_instruction.dart';
+import '../assembler/parsing/assembly_parser.dart';
+import '../assembler/parsing/c_instruction_parser.dart';
+import '../assembler/parsing/label_parser.dart';
+import '../assembler/parsing/symbols.dart';
 import 'any_named_args.dart';
 import 'assembly_parser_test.mocks.dart';
 

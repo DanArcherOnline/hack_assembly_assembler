@@ -3,12 +3,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../a_instruction_parser.dart';
-import '../assembly_instruction.dart';
-import '../environment.dart';
-import '../failure.dart';
-import '../service_locator.dart';
-import '../symbols.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/parsing/a_instruction_parser.dart';
+import '../assembler/parsing/assembly_instruction.dart';
+import '../assembler/parsing/symbols.dart';
 
 @GenerateMocks([Symbols])
 void main() {

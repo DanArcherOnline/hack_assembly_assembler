@@ -3,11 +3,11 @@ import 'package:mockito/mockito.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import '../environment.dart';
-import '../failure.dart';
-import '../label_parser.dart';
-import '../service_locator.dart';
-import '../symbols.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/parsing/label_parser.dart';
+import '../assembler/parsing/symbols.dart';
 
 void main() {
   configureDependencies(Env.test);

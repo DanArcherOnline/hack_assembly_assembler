@@ -4,16 +4,16 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../environment.dart';
-import '../line_processer.dart';
-import '../service_locator.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/io/line_processer.dart';
 import 'line_processer_test.mocks.dart';
 
-class Operation {
-  void operation(String line) {}
+abstract class TestFuncs {
+  void func(String line);
 }
 
-@GenerateMocks([Operation])
+@GenerateMocks([TestFuncs])
 void main() {
   configureDependencies(Env.test);
   final lineProcesser = sl<LineProcesser>();
@@ -30,12 +30,12 @@ void main() {
         final fixtureFilePath =
             '${Directory.current.path}/bin/test/fixtures/fixture_data.asm';
         final file = File(fixtureFilePath);
-        final testOperation = MockOperation();
+        final testOperation = MockTestFuncs();
         //act
         await lineProcesser.processLines(
-            file: file, lineOperation: testOperation.operation);
+            file: file, lineOperation: testOperation.func);
         //assert
-        expect(verify(testOperation.operation(captureAny)).captured, [
+        expect(verify(testOperation.func(captureAny)).captured, [
           fixturesLine1,
           fixturesLine2,
           fixturesLine3,

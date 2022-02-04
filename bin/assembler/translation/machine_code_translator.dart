@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import './int_extension.dart';
-import 'a_instruction_parser.dart';
-import 'assembly_instruction.dart';
-import 'failure.dart';
+import '../core/failure.dart';
+import '../core/int_extension.dart';
+import '../core/typedefs.dart';
+import '../parsing/a_instruction_parser.dart';
+import '../parsing/assembly_instruction.dart';
 import 'machine_code_instruction.dart';
-import 'typedefs.dart';
 
 @lazySingleton
 class MachineCodeTranslator {

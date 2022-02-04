@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../core/failure.dart';
+import '../core/typedefs.dart';
 import 'a_instruction_parser.dart';
 import 'c_instruction_parser.dart';
-import 'failure.dart';
-import 'typedefs.dart';
 
 @lazySingleton
 class AssemblyParser {

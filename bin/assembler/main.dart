@@ -1,16 +1,9 @@
-import 'dart:collection';
-import 'dart:io';
-
 import 'package:args/args.dart';
+import 'package:file/file.dart';
 
-import 'assembly_parser.dart';
-import 'environment.dart';
-import 'label_parser.dart';
-import 'line_processer.dart';
-import 'line_tracker.dart';
-import 'machine_code_translator.dart';
-import 'machine_code_writer.dart';
-import 'service_locator.dart';
+import 'Operations/label_parse_operation.dart';
+import 'core/environment.dart';
+import 'core/service_locator.dart';
 
 const pathArgName = 'path';
 const pathArgAbbr = 'p';
@@ -18,41 +11,20 @@ const pathArgAbbr = 'p';
 void main(List<String> arguments) async {
   configureDependencies(Env.dev);
   final path = getFileName(arguments);
-  final fileIn = File(path);
-  final lineTracker = sl<LineTracker>();
-  final labelParser = sl<LabelParser>();
-  final lineProcesser = sl<LineProcesser>();
-  final assemblyParser = sl<AssemblyParser>();
-  final machineCodeTranslator = sl<MachineCodeTranslator>();
-  //TODO catch writer instantiation errors and deal with them accordingly
-  final writer = sl.get<MachineCodeWriter>(param1: fileIn.path);
-  var lineNumber = 1;
-  final waitingLabelCode = Queue<String>();
-  await lineProcesser.processLines(
-      file: fileIn,
-      lineOperation: (line) {
-        if (waitingLabelCode.isNotEmpty &&
-            assemblyParser.minifyCode(line).isNotEmpty) {
-          final prevLabelCode = waitingLabelCode.removeFirst();
-          labelParser.parseLabel(prevLabelCode, lineTracker.currentLine);
-        }
+  final fileSystem = sl<FileSystem>();
+  final fileIn = fileSystem.file(path);
+  final labelParseOperation = sl<LabelParseOperation>();
+  await labelParseOperation.run(fileIn);
 
-        if (labelParser.isValidLabel(line)) {
-          waitingLabelCode.add(line);
-        }
-
-        lineTracker.incrementLineCount(
-            shouldIncrement: assemblyParser.minifyCode(line).isNotEmpty);
-      });
-  if (waitingLabelCode.isNotEmpty) {
-    //TODO return an InvalidLabelError
-    //TODO save label code and its line number together to use when parsing errors
-    final emptyLableCode = waitingLabelCode.removeFirst();
-    print('🤮 empty label: $emptyLableCode');
-    return;
-  }
-  print('🤮 labelParser.debugSymbols: ${labelParser.debugSymbols}');
-
+  //TODO put logic below into TranslateOperation
+  // final lineTracker = sl<LineTracker>();
+  // final labelParser = sl<LabelParser>();
+  // final lineProcesser = sl<LineProcesser>();
+  // final assemblyParser = sl<AssemblyParser>();
+  // final machineCodeTranslator = sl<MachineCodeTranslator>();
+  // //TODO catch writer instantiation errors and deal with them accordingly
+  // final writer = sl.get<MachineCodeWriter>(param1: fileIn.path);
+  // var lineNumber = 1;
   // lineProcesser.processLines(
   //   file: fileIn,
   //   lineOperation: (line) {
@@ -98,6 +70,7 @@ void main(List<String> arguments) async {
   // );
 }
 
+//TODO put in FileInParser
 ArgResults getArgs(List<String> arguments) {
   final argsParser = ArgParser();
   argsParser.addOption(
@@ -109,5 +82,3 @@ ArgResults getArgs(List<String> arguments) {
 }
 
 String getFileName(List<String> arguments) => getArgs(arguments)[pathArgName];
-String getEnvironment(List<String> arguments) =>
-    getArgs(arguments)[pathArgName];

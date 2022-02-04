@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../core/failure.dart';
+import '../core/typedefs.dart';
 import 'assembly_instruction.dart';
-import 'failure.dart';
 import 'instruction_parser.dart';
 import 'symbols.dart';
-import 'typedefs.dart';
 
 @injectable
 class AInstructionParser implements InstructionParser {

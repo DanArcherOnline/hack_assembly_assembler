@@ -2,8 +2,8 @@ import 'package:file/file.dart';
 import 'package:file/memory.dart';
 import 'package:injectable/injectable.dart';
 
-import '../environment.dart';
-import '../symbols.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/parsing/symbols.dart';
 import 'a_instruction_parser_test.mocks.dart';
 
 @module

@@ -15,16 +15,16 @@ import 'line_processer_test.dart' as _i2;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-/// A class which mocks [Operation].
+/// A class which mocks [TestFuncs].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOperation extends _i1.Mock implements _i2.Operation {
-  MockOperation() {
+class MockTestFuncs extends _i1.Mock implements _i2.TestFuncs {
+  MockTestFuncs() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  void operation(String? line) =>
-      super.noSuchMethod(Invocation.method(#operation, [line]),
+  void func(String? line) =>
+      super.noSuchMethod(Invocation.method(#func, [line]),
           returnValueForMissingStub: null);
 }

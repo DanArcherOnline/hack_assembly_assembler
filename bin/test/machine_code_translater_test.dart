@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
-import '../a_instruction_parser.dart';
-import '../assembly_instruction.dart';
-import '../environment.dart';
-import '../failure.dart';
-import '../machine_code_instruction.dart';
-import '../machine_code_translator.dart';
-import '../service_locator.dart';
-import '../typedefs.dart';
+import '../assembler/core/environment.dart';
+import '../assembler/core/failure.dart';
+import '../assembler/core/service_locator.dart';
+import '../assembler/core/typedefs.dart';
+import '../assembler/parsing/a_instruction_parser.dart';
+import '../assembler/parsing/assembly_instruction.dart';
+import '../assembler/translation/machine_code_instruction.dart';
+import '../assembler/translation/machine_code_translator.dart';
 
 void main() {
   configureDependencies(Env.test);

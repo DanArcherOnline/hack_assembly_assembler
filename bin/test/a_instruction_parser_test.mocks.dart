@@ -5,8 +5,8 @@
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
-import '../failure.dart' as _i4;
-import '../symbols.dart' as _i3;
+import '../assembler/core/failure.dart' as _i4;
+import '../assembler/parsing/symbols.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
