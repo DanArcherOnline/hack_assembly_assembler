@@ -64,7 +64,10 @@ class CInstructionParser implements InstructionParser {
   ];
 
   @override
-  FailureOrInstruction parse(String code) {
+  FailureOrInstruction parse({
+    required String code,
+    required int lineNumber,
+  }) {
     Failure? failure;
     String? destination;
     String? computation;

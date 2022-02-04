@@ -56,7 +56,8 @@ void main() {
           () async {
             //arrange
             //act
-            final failureOrInstruction = cInstructionParser.parse(code);
+            final failureOrInstruction =
+                cInstructionParser.parse(code: code, lineNumber: 0);
             //assert
             expect(
               failureOrInstruction,

@@ -23,7 +23,10 @@ class AInstructionParser implements InstructionParser {
   bool _isValue(String code) => RegExp(r'^[0-9]+$').hasMatch(code);
 
   @override
-  FailureOrInstruction parse(String code) {
+  FailureOrInstruction parse({
+    required String code,
+    required int lineNumber,
+  }) {
     final extractedCode = _extract(code);
     if (extractedCode.isEmpty) {
       return left(InvalidAInstructionValueFailure());

@@ -17,13 +17,16 @@ class AssemblyParser {
   AssemblyParser(
       this.aInstructionParser, this.cInstructionParser, this.labelParser);
 
-  FailureOrInstruction parse(String line) {
+  FailureOrInstruction parse({
+    required String line,
+    required int lineNumber,
+  }) {
     final code = minifyCode(line);
     if (aInstructionParser.isValid(code)) {
-      return aInstructionParser.parse(code);
+      return aInstructionParser.parse(code: code, lineNumber: lineNumber);
     }
     if (cInstructionParser.isValid(code)) {
-      return cInstructionParser.parse(code);
+      return cInstructionParser.parse(code: code, lineNumber: lineNumber);
     }
     return left(NotInstructionFailure());
   }

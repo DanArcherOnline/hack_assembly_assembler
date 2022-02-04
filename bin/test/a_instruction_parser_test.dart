@@ -59,7 +59,7 @@ void main() {
         final code = '@26';
         final expectedAInstruction = AInstruction(value: '26');
         //act
-        final instruction = aInstructionParser.parse(code);
+        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
         //assert
         expect(instruction, right(expectedAInstruction));
       },
@@ -72,7 +72,8 @@ void main() {
         //arrange
         final beyondMaxValCode = '@${AInstructionParser.maxVal + 1}';
         //act
-        final failure = aInstructionParser.parse(beyondMaxValCode);
+        final failure =
+            aInstructionParser.parse(code: beyondMaxValCode, lineNumber: 0);
         //assert
         expect(failure, left(InvalidAInstructionValueFailure()));
       },
@@ -90,7 +91,7 @@ void main() {
         when(symbols.get(extractedCode)).thenAnswer((_) => right('15'));
         when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
         //act
-        final instruction = aInstructionParser.parse(code);
+        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
         //assert
         expect(instruction, right(expectedAInstruction));
       },
@@ -108,7 +109,7 @@ void main() {
         when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
 
         //act
-        final instruction = aInstructionParser.parse(code);
+        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
         //assert
         expect(instruction, left(SymbolDoesNotExistFailure()));
       },
@@ -123,7 +124,8 @@ void main() {
         final invalidSymbolKey = '/IShouldNotExist';
         when(symbols.isValidKey(invalidSymbolKey)).thenAnswer((_) => false);
         //act
-        final instruction = aInstructionParser.parse(invalidSymbolCode);
+        final instruction =
+            aInstructionParser.parse(code: invalidSymbolCode, lineNumber: 0);
         //assert
         expect(instruction, left(InvalidAInstructionValueFailure()));
       },

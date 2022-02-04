@@ -14,6 +14,9 @@ import '../service_locator.dart';
 import '../symbols.dart';
 import 'assembly_parser_test.mocks.dart';
 
+Null get anyCodeArg => anyNamed('code');
+Null get anyLineNumberArg => anyNamed('lineNumber');
+
 @GenerateMocks([AInstructionParser, CInstructionParser])
 void main() {
   configureDependencies(Env.test);
@@ -28,6 +31,7 @@ void main() {
     computation: '',
     jump: '',
   );
+  // String get anyCodeArg => anyCodeArg;
 
   setUp(() {
     aInstructionParser = MockAInstructionParser();
@@ -48,13 +52,18 @@ void main() {
         //arrange
         final line = '@3';
         when(aInstructionParser.isValid(any)).thenReturn(true);
-        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        when(aInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(aInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(aInstruction));
-        verify(aInstructionParser.parse(line)).called(1);
-        verifyNever(cInstructionParser.parse(any));
+        verify(aInstructionParser.parse(
+                code: line, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(cInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -66,13 +75,18 @@ void main() {
         final line = 'D=M';
         when(aInstructionParser.isValid(any)).thenReturn(false);
         when(cInstructionParser.isValid(any)).thenReturn(true);
-        when(cInstructionParser.parse(any)).thenReturn(Right(cInstruction));
+        when(cInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(cInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(cInstruction));
-        verify(cInstructionParser.parse(line)).called(1);
-        verifyNever(aInstructionParser.parse(any));
+        verify(cInstructionParser.parse(
+                code: line, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(aInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -84,13 +98,18 @@ void main() {
         final line = '@R3';
         when(aInstructionParser.isValid(any)).thenReturn(true);
         when(cInstructionParser.isValid(any)).thenReturn(false);
-        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        when(aInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(aInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(aInstruction));
-        verify(aInstructionParser.parse(line)).called(1);
-        verifyNever(cInstructionParser.parse(any));
+        verify(aInstructionParser.parse(
+                code: line, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(cInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -103,13 +122,18 @@ void main() {
         final trimedLine = '@3';
         when(aInstructionParser.isValid(any)).thenReturn(true);
         when(cInstructionParser.isValid(any)).thenReturn(false);
-        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        when(aInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(aInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(aInstruction));
-        verify(aInstructionParser.parse(trimedLine)).called(1);
-        verifyNever(cInstructionParser.parse(any));
+        verify(aInstructionParser.parse(
+                code: trimedLine, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(cInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -121,13 +145,18 @@ void main() {
         final line = '@';
         when(aInstructionParser.isValid(any)).thenReturn(true);
         when(cInstructionParser.isValid(any)).thenReturn(false);
-        when(aInstructionParser.parse(any)).thenReturn(Right(aInstruction));
+        when(aInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(aInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(aInstruction));
-        verify(aInstructionParser.parse(line)).called(1);
-        verifyNever(cInstructionParser.parse(any));
+        verify(aInstructionParser.parse(
+                code: line, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(cInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -140,13 +169,18 @@ void main() {
         final trimedLine = 'D=M';
         when(aInstructionParser.isValid(any)).thenReturn(false);
         when(cInstructionParser.isValid(any)).thenReturn(true);
-        when(cInstructionParser.parse(any)).thenReturn(Right(cInstruction));
+        when(cInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(cInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(cInstruction));
-        verify(cInstructionParser.parse(trimedLine)).called(1);
-        verifyNever(aInstructionParser.parse(any));
+        verify(cInstructionParser.parse(
+                code: trimedLine, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(aInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -159,13 +193,18 @@ void main() {
         final trimedLine = 'D=M';
         when(aInstructionParser.isValid(any)).thenReturn(false);
         when(cInstructionParser.isValid(any)).thenReturn(true);
-        when(cInstructionParser.parse(any)).thenReturn(Right(cInstruction));
+        when(cInstructionParser.parse(
+                code: anyCodeArg, lineNumber: anyLineNumberArg))
+            .thenReturn(Right(cInstruction));
         //act
-        final instruction = assemblyParser.parse(line);
+        final instruction = assemblyParser.parse(line: line, lineNumber: 0);
         //assert
         expect(instruction, right(cInstruction));
-        verify(cInstructionParser.parse(trimedLine)).called(1);
-        verifyNever(aInstructionParser.parse(any));
+        verify(cInstructionParser.parse(
+                code: trimedLine, lineNumber: anyLineNumberArg))
+            .called(1);
+        verifyNever(aInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
 
@@ -178,11 +217,14 @@ void main() {
         when(aInstructionParser.isValid(any)).thenReturn(false);
         when(cInstructionParser.isValid(any)).thenReturn(false);
         //act
-        final instruction = assemblyParser.parse('M=M-1ZZZZZ');
+        final instruction =
+            assemblyParser.parse(line: 'M=M-1ZZZZZ', lineNumber: 0);
         //assert
         expect(instruction, left(failure));
-        verifyNever(aInstructionParser.parse(any));
-        verifyNever(cInstructionParser.parse(any));
+        verifyNever(aInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
+        verifyNever(cInstructionParser.parse(
+            code: anyCodeArg, lineNumber: anyLineNumberArg));
       },
     );
   });
