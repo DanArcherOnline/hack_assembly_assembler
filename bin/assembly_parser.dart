@@ -4,14 +4,18 @@ import 'package:injectable/injectable.dart';
 import 'a_instruction_parser.dart';
 import 'c_instruction_parser.dart';
 import 'failure.dart';
+import 'label_parser.dart';
 import 'typedefs.dart';
 
 @lazySingleton
 class AssemblyParser {
+  //TODO make dependecies private
   final AInstructionParser aInstructionParser;
   final CInstructionParser cInstructionParser;
+  final LabelParser labelParser;
 
-  AssemblyParser(this.aInstructionParser, this.cInstructionParser);
+  AssemblyParser(
+      this.aInstructionParser, this.cInstructionParser, this.labelParser);
 
   FailureOrInstruction parse(String line) {
     final code = minifyCode(line);

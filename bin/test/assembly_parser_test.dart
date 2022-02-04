@@ -9,7 +9,9 @@ import '../assembly_parser.dart';
 import '../c_instruction_parser.dart';
 import '../environment.dart';
 import '../failure.dart';
+import '../label_parser.dart';
 import '../service_locator.dart';
+import '../symbols.dart';
 import 'assembly_parser_test.mocks.dart';
 
 @GenerateMocks([AInstructionParser, CInstructionParser])
@@ -18,6 +20,8 @@ void main() {
   late AssemblyParser assemblyParser;
   late MockAInstructionParser aInstructionParser;
   late MockCInstructionParser cInstructionParser;
+  //TODO create mock
+  late LabelParser labelParser;
   late final aInstruction = AInstruction(value: '');
   late final cInstruction = CInstruction(
     destination: '',
@@ -28,7 +32,12 @@ void main() {
   setUp(() {
     aInstructionParser = MockAInstructionParser();
     cInstructionParser = MockCInstructionParser();
-    assemblyParser = AssemblyParser(aInstructionParser, cInstructionParser);
+    labelParser = LabelParser(symbols: Symbols());
+    assemblyParser = AssemblyParser(
+      aInstructionParser,
+      cInstructionParser,
+      labelParser,
+    );
   });
 
   group('parse', () {
@@ -174,6 +183,62 @@ void main() {
         expect(instruction, left(failure));
         verifyNever(aInstructionParser.parse(any));
         verifyNever(cInstructionParser.parse(any));
+      },
+    );
+  });
+
+  group('minify', () {
+    test(
+      'should remove all white space when called on an a raw assembly code string',
+      () async {
+        //arrange
+        final rawAssemblyCodeWithWhiteSpace = '   @  56';
+        final parsedAssemblyCodeWithWhiteSpace = '@56';
+        //act
+        final parsedCode =
+            assemblyParser.minifyCode(rawAssemblyCodeWithWhiteSpace);
+        //assert
+        expect(parsedCode, parsedAssemblyCodeWithWhiteSpace);
+      },
+    );
+
+    test(
+      'should remove comment when called on an a raw assembly code string',
+      () async {
+        //arrange
+        final rawAssemblyCodeWithComment = '@56 //comment in line';
+        final parsedAssemblyCodeWithComment = '@56';
+        //act
+        final parsedCode =
+            assemblyParser.minifyCode(rawAssemblyCodeWithComment);
+        //assert
+        expect(parsedCode, parsedAssemblyCodeWithComment);
+      },
+    );
+
+    test(
+      'should return an empty string when called on blank whitespace',
+      () async {
+        //arrange
+        final blankWhitespace = '                  ';
+        final emptyString = '';
+        //act
+        final parsedCode = assemblyParser.minifyCode(blankWhitespace);
+        //assert
+        expect(parsedCode, emptyString);
+      },
+    );
+
+    test(
+      'should return an empty string when called on an empty string',
+      () async {
+        //arrange
+        final blankWhitespace = '';
+        final emptyString = '';
+        //act
+        final parsedCode = assemblyParser.minifyCode(blankWhitespace);
+        //assert
+        expect(parsedCode, emptyString);
       },
     );
   });

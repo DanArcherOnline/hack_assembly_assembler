@@ -54,4 +54,7 @@ class Symbols {
 
   bool isValidKey(String symbolKey) =>
       RegExp(r'^[a-zA-Z]+.*').hasMatch(symbolKey);
+
+  //TODO remove below debug getter
+  Map<String, String> get debugSymbols => _symbols;
 }
