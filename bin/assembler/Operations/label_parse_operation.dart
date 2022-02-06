@@ -48,7 +48,7 @@ class LabelParseOperation implements Operation {
           }
 
           _lineTracker.incrementLineCounters(
-            isParsableCode: !_isWhitespaceOrComment(line),
+            isParsableCode: !_isWhitespaceOrCommentOrLabel(line),
           );
           return none();
         });
@@ -65,6 +65,6 @@ class LabelParseOperation implements Operation {
     return none();
   }
 
-  bool _isWhitespaceOrComment(String line) =>
-      _assemblyParser.minifyCode(line).isEmpty;
+  bool _isWhitespaceOrCommentOrLabel(String line) =>
+      _assemblyParser.minifyCode(line).isEmpty || _labelParser.isLabel(line);
 }

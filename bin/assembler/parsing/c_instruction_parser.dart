@@ -9,16 +9,24 @@ import 'instruction_parser.dart';
 @injectable
 class CInstructionParser implements InstructionParser {
   static const cInstructionRulesRegex =
-      r'^([AMD0-9]*[;=]{1})(JMP|JGT|JLT|JGE|JLE|JEQ|JNE|[ADM0-9-+]*)$';
+      r'^([AMD0-9]*[;=]{1})(JMP|JGT|JLT|JGE|JLE|JEQ|JNE|[ADM0-9-+&|!]*)$';
   static const List<String> validDestinations = [
     'null',
     'M',
     'D',
     'DM',
+    'MD',
     'A',
     'AM',
+    'MA',
     'AD',
+    'DA',
     'ADM',
+    'AMD',
+    'DAM',
+    'DMA',
+    'MAD',
+    'MDA',
   ];
 
   static const List<String> validComputations = [
@@ -36,20 +44,26 @@ class CInstructionParser implements InstructionParser {
     'D-1',
     'A-1',
     'D+A',
+    'A+D',
     'D-A',
     'A-D',
     'D&A',
+    'A&D',
     'D|A',
+    'A|D',
     'M',
     '!M',
     '-M',
     'M+1',
     'M-1',
     'D+M',
+    'M+D',
     'D-M',
     'M-D',
     'D&M',
+    'M&D',
     'D|M',
+    'M|D',
   ];
 
   static const List<String> validJumps = [

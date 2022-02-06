@@ -15,10 +15,18 @@ class MachineCodeTranslator {
     'M': '001',
     'D': '010',
     'DM': '011',
+    'MD': '011',
     'A': '100',
     'AM': '101',
+    'MA': '101',
     'AD': '110',
+    'DA': '110',
     'ADM': '111',
+    'AMD': '111',
+    'DMA': '111',
+    'DAM': '111',
+    'MAD': '111',
+    'MDA': '111',
   };
   static const computationTranslationTable0 = {
     '0': '101010',
@@ -35,10 +43,13 @@ class MachineCodeTranslator {
     'D-1': '001110',
     'A-1': '110010',
     'D+A': '000010',
+    'A+D': '000010',
     'D-A': '010011',
     'A-D': '000111',
     'D&A': '000000',
+    'A&D': '000000',
     'D|A': '010101',
+    'A|D': '010101',
   };
   static const computationTranslationTable1 = {
     'M': '110000',
@@ -47,10 +58,13 @@ class MachineCodeTranslator {
     'M+1': '110111',
     'M-1': '110010',
     'D+M': '000010',
+    'M+D': '000010',
     'D-M': '010011',
     'M-D': '000111',
     'D&M': '000000',
+    'M&D': '000000',
     'D|M': '010101',
+    'M|D': '010101',
   };
   static const jumpTranslationTable = {
     'null': '000',
