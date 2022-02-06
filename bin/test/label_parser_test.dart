@@ -98,9 +98,18 @@ void main() {
         //arrange
         final invalidLabelCode = '(1_AM_A_LABEL)';
         //act
-        final failureOption = labelParser.parseLabel(invalidLabelCode, 0);
+        final failureOption = labelParser.parseLabel(
+          line: invalidLabelCode,
+          lineNumber: 0,
+        );
         //assert
-        expect(failureOption, some(InvalidLabelFailure()));
+        expect(
+            failureOption,
+            some(InvalidLabelFailure(
+              type: InvalidLabelType.invalidSyntax,
+              lineNumber: 0,
+              line: invalidLabelCode,
+            )));
       },
     );
     test(
@@ -111,7 +120,10 @@ void main() {
         final validLabelKey = 'VALID_LABEL_KEY';
         when(symbols.put(validLabelKey, '123')).thenAnswer((_) => none());
         //act
-        final failureOption = labelParser.parseLabel(validLabelCode, 123);
+        final failureOption = labelParser.parseLabel(
+          line: validLabelCode,
+          lineNumber: 123,
+        );
         //assert
         expect(failureOption, none());
       },
@@ -128,7 +140,10 @@ void main() {
         when(symbols.put(validLabelKey, labelValString))
             .thenAnswer((_) => none());
         //act
-        labelParser.parseLabel(validLabelCode, validCodelineNumber);
+        labelParser.parseLabel(
+          line: validLabelCode,
+          lineNumber: validCodelineNumber,
+        );
         //assert
         verify(symbols.put(validLabelKey, labelValString));
       },

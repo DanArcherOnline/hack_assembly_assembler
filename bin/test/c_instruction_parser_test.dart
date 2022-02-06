@@ -56,8 +56,11 @@ void main() {
           () async {
             //arrange
             //act
-            final failureOrInstruction =
-                cInstructionParser.parse(code: code, lineNumber: 0);
+            final failureOrInstruction = cInstructionParser.parse(
+              minifiedCode: code,
+              lineNumber: 0,
+              rawCode: code,
+            );
             //assert
             expect(
               failureOrInstruction,
@@ -110,23 +113,42 @@ void main() {
       );
 
       //Failures
+      final invalidDestSyntax = 'Z=M+1';
       instructionTableTest(
-        code: 'Z=M+1',
+        code: invalidDestSyntax,
         expected: left(
-          InvalidCInstructionDestinationFailure(),
+          InvalidCInstructionDestinationFailure(
+            type: InvalidCInstructionDestinationType.invalidSyntax,
+            lineNumber: 0,
+            line: invalidDestSyntax,
+          ),
         ),
       );
+      final invalidDestSyntax2 = 'A"M=M-1';
       instructionTableTest(
-        code: 'A"M=M-1',
-        expected: left(InvalidCInstructionDestinationFailure()),
+        code: invalidDestSyntax2,
+        expected: left(InvalidCInstructionDestinationFailure(
+            type: InvalidCInstructionDestinationType.invalidSyntax,
+            lineNumber: 0,
+            line: invalidDestSyntax2)),
       );
+      final invalidComp = 'D JNE';
       instructionTableTest(
-        code: 'D JNE',
-        expected: left(InvalidCInstructionComputationFailure()),
+        code: invalidComp,
+        expected: left(InvalidCInstructionComputationFailure(
+          type: InvalidCInstructionComputationType.invalidSyntax,
+          lineNumber: 0,
+          line: invalidComp,
+        )),
       );
+      final invalidJump = 'M+1; WHAT';
       instructionTableTest(
-        code: 'M+1; WHAT',
-        expected: left(InvalidCInstructionJumpFailure()),
+        code: invalidJump,
+        expected: left(InvalidCInstructionJumpFailure(
+          type: InvalidCInstructionJumpType.invalidSyntax,
+          lineNumber: 0,
+          line: invalidJump,
+        )),
       );
     },
   );

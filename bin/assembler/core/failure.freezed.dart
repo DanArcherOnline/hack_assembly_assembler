@@ -17,40 +17,75 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FailureTearOff {
   const _$FailureTearOff();
 
-  NotInstructionFailure notInstruction() {
-    return const NotInstructionFailure();
+  NotInstructionFailure notInstruction(
+      {required NotInstructionType type, int? lineNumber, String? line}) {
+    return NotInstructionFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  ValueTooLargeFailure valueTooLarge() {
-    return const ValueTooLargeFailure();
+  InvalidAInstructionValueFailure invalidAInstructionValue(
+      {required InvalidAInstructionValueType type,
+      int? lineNumber,
+      String? line}) {
+    return InvalidAInstructionValueFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  InvalidAInstructionValueFailure invalidAInstructionValue() {
-    return const InvalidAInstructionValueFailure();
+  InvalidCInstructionDestinationFailure invalidCInstructionDestination(
+      {required InvalidCInstructionDestinationType type,
+      int? lineNumber,
+      String? line}) {
+    return InvalidCInstructionDestinationFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  InvalidCInstructionDestinationFailure invalidCInstructionDestination() {
-    return const InvalidCInstructionDestinationFailure();
+  InvalidCInstructionComputationFailure invalidCInstructionComputation(
+      {required InvalidCInstructionComputationType type,
+      int? lineNumber,
+      String? line}) {
+    return InvalidCInstructionComputationFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  InvalidCInstructionComputationFailure invalidCInstructionComputation() {
-    return const InvalidCInstructionComputationFailure();
+  InvalidCInstructionJumpFailure invalidCInstructionJump(
+      {required InvalidCInstructionJumpType type,
+      int? lineNumber,
+      String? line}) {
+    return InvalidCInstructionJumpFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  InvalidCInstructionJumpFailure invalidCInstructionJump() {
-    return const InvalidCInstructionJumpFailure();
+  InvalidFilePathFailure InvalidFilePath(
+      {required InvalidFilePathType type, int? lineNumber, String? line}) {
+    return InvalidFilePathFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 
-  InvalidFilePathFailure InvalidFilePath() {
-    return const InvalidFilePathFailure();
-  }
-
-  SymbolDoesNotExistFailure symbolDoesNotExist() {
-    return const SymbolDoesNotExistFailure();
-  }
-
-  InvalidLabelFailure invalidLabel() {
-    return const InvalidLabelFailure();
+  InvalidLabelFailure invalidLabel(
+      {required InvalidLabelType type, int? lineNumber, String? line}) {
+    return InvalidLabelFailure(
+      type: type,
+      lineNumber: lineNumber,
+      line: line,
+    );
   }
 }
 
@@ -59,50 +94,82 @@ const $Failure = _$FailureTearOff();
 
 /// @nodoc
 mixin _$Failure {
+  int? get lineNumber => throw _privateConstructorUsedError;
+  String? get line => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -112,15 +179,12 @@ mixin _$Failure {
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -130,14 +194,12 @@ mixin _$Failure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -147,17 +209,20 @@ mixin _$Failure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res>;
+  $Res call({int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -167,13 +232,33 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
   final Failure _value;
   // ignore: unused_field
   final $Res Function(Failure) _then;
+
+  @override
+  $Res call({
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(_value.copyWith(
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $NotInstructionFailureCopyWith<$Res> {
+abstract class $NotInstructionFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $NotInstructionFailureCopyWith(NotInstructionFailure value,
           $Res Function(NotInstructionFailure) then) =
       _$NotInstructionFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({NotInstructionType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -186,74 +271,152 @@ class _$NotInstructionFailureCopyWithImpl<$Res>
 
   @override
   NotInstructionFailure get _value => super._value as NotInstructionFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(NotInstructionFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as NotInstructionType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$NotInstructionFailure implements NotInstructionFailure {
-  const _$NotInstructionFailure();
+  const _$NotInstructionFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final NotInstructionType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.notInstruction()';
+    return 'Failure.notInstruction(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NotInstructionFailure);
+    return identical(this, other) ||
+        (other is NotInstructionFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $NotInstructionFailureCopyWith<NotInstructionFailure> get copyWith =>
+      _$NotInstructionFailureCopyWithImpl<NotInstructionFailure>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return notInstruction();
+    return notInstruction(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return notInstruction?.call();
+    return notInstruction?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (notInstruction != null) {
-      return notInstruction();
+      return notInstruction(type, lineNumber, line);
     }
     return orElse();
   }
@@ -262,7 +425,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -272,8 +434,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return notInstruction(this);
@@ -283,7 +443,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -293,7 +452,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return notInstruction?.call(this);
@@ -303,7 +461,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -313,7 +470,6 @@ class _$NotInstructionFailure implements NotInstructionFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -325,174 +481,31 @@ class _$NotInstructionFailure implements NotInstructionFailure {
 }
 
 abstract class NotInstructionFailure implements Failure {
-  const factory NotInstructionFailure() = _$NotInstructionFailure;
+  const factory NotInstructionFailure(
+      {required NotInstructionType type,
+      int? lineNumber,
+      String? line}) = _$NotInstructionFailure;
+
+  NotInstructionType get type => throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $NotInstructionFailureCopyWith<NotInstructionFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ValueTooLargeFailureCopyWith<$Res> {
-  factory $ValueTooLargeFailureCopyWith(ValueTooLargeFailure value,
-          $Res Function(ValueTooLargeFailure) then) =
-      _$ValueTooLargeFailureCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$ValueTooLargeFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
-    implements $ValueTooLargeFailureCopyWith<$Res> {
-  _$ValueTooLargeFailureCopyWithImpl(
-      ValueTooLargeFailure _value, $Res Function(ValueTooLargeFailure) _then)
-      : super(_value, (v) => _then(v as ValueTooLargeFailure));
-
-  @override
-  ValueTooLargeFailure get _value => super._value as ValueTooLargeFailure;
-}
-
-/// @nodoc
-
-class _$ValueTooLargeFailure implements ValueTooLargeFailure {
-  const _$ValueTooLargeFailure();
-
-  @override
-  String toString() {
-    return 'Failure.valueTooLarge()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ValueTooLargeFailure);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
-  }) {
-    return valueTooLarge();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
-  }) {
-    return valueTooLarge?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
-    required TResult orElse(),
-  }) {
-    if (valueTooLarge != null) {
-      return valueTooLarge();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
-    required TResult Function(InvalidAInstructionValueFailure value)
-        invalidAInstructionValue,
-    required TResult Function(InvalidCInstructionDestinationFailure value)
-        invalidCInstructionDestination,
-    required TResult Function(InvalidCInstructionComputationFailure value)
-        invalidCInstructionComputation,
-    required TResult Function(InvalidCInstructionJumpFailure value)
-        invalidCInstructionJump,
-    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
-    required TResult Function(InvalidLabelFailure value) invalidLabel,
-  }) {
-    return valueTooLarge(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
-    TResult Function(InvalidAInstructionValueFailure value)?
-        invalidAInstructionValue,
-    TResult Function(InvalidCInstructionDestinationFailure value)?
-        invalidCInstructionDestination,
-    TResult Function(InvalidCInstructionComputationFailure value)?
-        invalidCInstructionComputation,
-    TResult Function(InvalidCInstructionJumpFailure value)?
-        invalidCInstructionJump,
-    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
-    TResult Function(InvalidLabelFailure value)? invalidLabel,
-  }) {
-    return valueTooLarge?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
-    TResult Function(InvalidAInstructionValueFailure value)?
-        invalidAInstructionValue,
-    TResult Function(InvalidCInstructionDestinationFailure value)?
-        invalidCInstructionDestination,
-    TResult Function(InvalidCInstructionComputationFailure value)?
-        invalidCInstructionComputation,
-    TResult Function(InvalidCInstructionJumpFailure value)?
-        invalidCInstructionJump,
-    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
-    TResult Function(InvalidLabelFailure value)? invalidLabel,
-    required TResult orElse(),
-  }) {
-    if (valueTooLarge != null) {
-      return valueTooLarge(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ValueTooLargeFailure implements Failure {
-  const factory ValueTooLargeFailure() = _$ValueTooLargeFailure;
-}
-
-/// @nodoc
-abstract class $InvalidAInstructionValueFailureCopyWith<$Res> {
+abstract class $InvalidAInstructionValueFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidAInstructionValueFailureCopyWith(
           InvalidAInstructionValueFailure value,
           $Res Function(InvalidAInstructionValueFailure) then) =
       _$InvalidAInstructionValueFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({InvalidAInstructionValueType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -507,75 +520,153 @@ class _$InvalidAInstructionValueFailureCopyWithImpl<$Res>
   @override
   InvalidAInstructionValueFailure get _value =>
       super._value as InvalidAInstructionValueFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidAInstructionValueFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidAInstructionValueType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidAInstructionValueFailure
     implements InvalidAInstructionValueFailure {
-  const _$InvalidAInstructionValueFailure();
+  const _$InvalidAInstructionValueFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidAInstructionValueType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.invalidAInstructionValue()';
+    return 'Failure.invalidAInstructionValue(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidAInstructionValueFailure);
+    return identical(this, other) ||
+        (other is InvalidAInstructionValueFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidAInstructionValueFailureCopyWith<InvalidAInstructionValueFailure>
+      get copyWith => _$InvalidAInstructionValueFailureCopyWithImpl<
+          InvalidAInstructionValueFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return invalidAInstructionValue();
+    return invalidAInstructionValue(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return invalidAInstructionValue?.call();
+    return invalidAInstructionValue?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidAInstructionValue != null) {
-      return invalidAInstructionValue();
+      return invalidAInstructionValue(type, lineNumber, line);
     }
     return orElse();
   }
@@ -584,7 +675,6 @@ class _$InvalidAInstructionValueFailure
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -594,8 +684,6 @@ class _$InvalidAInstructionValueFailure
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidAInstructionValue(this);
@@ -605,7 +693,6 @@ class _$InvalidAInstructionValueFailure
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -615,7 +702,6 @@ class _$InvalidAInstructionValueFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidAInstructionValue?.call(this);
@@ -625,7 +711,6 @@ class _$InvalidAInstructionValueFailure
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -635,7 +720,6 @@ class _$InvalidAInstructionValueFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -647,16 +731,32 @@ class _$InvalidAInstructionValueFailure
 }
 
 abstract class InvalidAInstructionValueFailure implements Failure {
-  const factory InvalidAInstructionValueFailure() =
-      _$InvalidAInstructionValueFailure;
+  const factory InvalidAInstructionValueFailure(
+      {required InvalidAInstructionValueType type,
+      int? lineNumber,
+      String? line}) = _$InvalidAInstructionValueFailure;
+
+  InvalidAInstructionValueType get type => throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidAInstructionValueFailureCopyWith<InvalidAInstructionValueFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvalidCInstructionDestinationFailureCopyWith<$Res> {
+abstract class $InvalidCInstructionDestinationFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidCInstructionDestinationFailureCopyWith(
           InvalidCInstructionDestinationFailure value,
           $Res Function(InvalidCInstructionDestinationFailure) then) =
       _$InvalidCInstructionDestinationFailureCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {InvalidCInstructionDestinationType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -671,76 +771,154 @@ class _$InvalidCInstructionDestinationFailureCopyWithImpl<$Res>
   @override
   InvalidCInstructionDestinationFailure get _value =>
       super._value as InvalidCInstructionDestinationFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidCInstructionDestinationFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidCInstructionDestinationType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidCInstructionDestinationFailure
     implements InvalidCInstructionDestinationFailure {
-  const _$InvalidCInstructionDestinationFailure();
+  const _$InvalidCInstructionDestinationFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidCInstructionDestinationType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.invalidCInstructionDestination()';
+    return 'Failure.invalidCInstructionDestination(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidCInstructionDestinationFailure);
+        (other is InvalidCInstructionDestinationFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidCInstructionDestinationFailureCopyWith<
+          InvalidCInstructionDestinationFailure>
+      get copyWith => _$InvalidCInstructionDestinationFailureCopyWithImpl<
+          InvalidCInstructionDestinationFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return invalidCInstructionDestination();
+    return invalidCInstructionDestination(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return invalidCInstructionDestination?.call();
+    return invalidCInstructionDestination?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionDestination != null) {
-      return invalidCInstructionDestination();
+      return invalidCInstructionDestination(type, lineNumber, line);
     }
     return orElse();
   }
@@ -749,7 +927,6 @@ class _$InvalidCInstructionDestinationFailure
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -759,8 +936,6 @@ class _$InvalidCInstructionDestinationFailure
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionDestination(this);
@@ -770,7 +945,6 @@ class _$InvalidCInstructionDestinationFailure
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -780,7 +954,6 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionDestination?.call(this);
@@ -790,7 +963,6 @@ class _$InvalidCInstructionDestinationFailure
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -800,7 +972,6 @@ class _$InvalidCInstructionDestinationFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -812,16 +983,34 @@ class _$InvalidCInstructionDestinationFailure
 }
 
 abstract class InvalidCInstructionDestinationFailure implements Failure {
-  const factory InvalidCInstructionDestinationFailure() =
-      _$InvalidCInstructionDestinationFailure;
+  const factory InvalidCInstructionDestinationFailure(
+      {required InvalidCInstructionDestinationType type,
+      int? lineNumber,
+      String? line}) = _$InvalidCInstructionDestinationFailure;
+
+  InvalidCInstructionDestinationType get type =>
+      throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidCInstructionDestinationFailureCopyWith<
+          InvalidCInstructionDestinationFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvalidCInstructionComputationFailureCopyWith<$Res> {
+abstract class $InvalidCInstructionComputationFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidCInstructionComputationFailureCopyWith(
           InvalidCInstructionComputationFailure value,
           $Res Function(InvalidCInstructionComputationFailure) then) =
       _$InvalidCInstructionComputationFailureCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {InvalidCInstructionComputationType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -836,76 +1025,154 @@ class _$InvalidCInstructionComputationFailureCopyWithImpl<$Res>
   @override
   InvalidCInstructionComputationFailure get _value =>
       super._value as InvalidCInstructionComputationFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidCInstructionComputationFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidCInstructionComputationType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidCInstructionComputationFailure
     implements InvalidCInstructionComputationFailure {
-  const _$InvalidCInstructionComputationFailure();
+  const _$InvalidCInstructionComputationFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidCInstructionComputationType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.invalidCInstructionComputation()';
+    return 'Failure.invalidCInstructionComputation(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidCInstructionComputationFailure);
+        (other is InvalidCInstructionComputationFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidCInstructionComputationFailureCopyWith<
+          InvalidCInstructionComputationFailure>
+      get copyWith => _$InvalidCInstructionComputationFailureCopyWithImpl<
+          InvalidCInstructionComputationFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return invalidCInstructionComputation();
+    return invalidCInstructionComputation(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return invalidCInstructionComputation?.call();
+    return invalidCInstructionComputation?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionComputation != null) {
-      return invalidCInstructionComputation();
+      return invalidCInstructionComputation(type, lineNumber, line);
     }
     return orElse();
   }
@@ -914,7 +1181,6 @@ class _$InvalidCInstructionComputationFailure
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -924,8 +1190,6 @@ class _$InvalidCInstructionComputationFailure
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionComputation(this);
@@ -935,7 +1199,6 @@ class _$InvalidCInstructionComputationFailure
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -945,7 +1208,6 @@ class _$InvalidCInstructionComputationFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionComputation?.call(this);
@@ -955,7 +1217,6 @@ class _$InvalidCInstructionComputationFailure
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -965,7 +1226,6 @@ class _$InvalidCInstructionComputationFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -977,16 +1237,33 @@ class _$InvalidCInstructionComputationFailure
 }
 
 abstract class InvalidCInstructionComputationFailure implements Failure {
-  const factory InvalidCInstructionComputationFailure() =
-      _$InvalidCInstructionComputationFailure;
+  const factory InvalidCInstructionComputationFailure(
+      {required InvalidCInstructionComputationType type,
+      int? lineNumber,
+      String? line}) = _$InvalidCInstructionComputationFailure;
+
+  InvalidCInstructionComputationType get type =>
+      throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidCInstructionComputationFailureCopyWith<
+          InvalidCInstructionComputationFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvalidCInstructionJumpFailureCopyWith<$Res> {
+abstract class $InvalidCInstructionJumpFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidCInstructionJumpFailureCopyWith(
           InvalidCInstructionJumpFailure value,
           $Res Function(InvalidCInstructionJumpFailure) then) =
       _$InvalidCInstructionJumpFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({InvalidCInstructionJumpType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -1001,75 +1278,153 @@ class _$InvalidCInstructionJumpFailureCopyWithImpl<$Res>
   @override
   InvalidCInstructionJumpFailure get _value =>
       super._value as InvalidCInstructionJumpFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidCInstructionJumpFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidCInstructionJumpType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidCInstructionJumpFailure
     implements InvalidCInstructionJumpFailure {
-  const _$InvalidCInstructionJumpFailure();
+  const _$InvalidCInstructionJumpFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidCInstructionJumpType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.invalidCInstructionJump()';
+    return 'Failure.invalidCInstructionJump(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidCInstructionJumpFailure);
+    return identical(this, other) ||
+        (other is InvalidCInstructionJumpFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidCInstructionJumpFailureCopyWith<InvalidCInstructionJumpFailure>
+      get copyWith => _$InvalidCInstructionJumpFailureCopyWithImpl<
+          InvalidCInstructionJumpFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return invalidCInstructionJump();
+    return invalidCInstructionJump(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return invalidCInstructionJump?.call();
+    return invalidCInstructionJump?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidCInstructionJump != null) {
-      return invalidCInstructionJump();
+      return invalidCInstructionJump(type, lineNumber, line);
     }
     return orElse();
   }
@@ -1078,7 +1433,6 @@ class _$InvalidCInstructionJumpFailure
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -1088,8 +1442,6 @@ class _$InvalidCInstructionJumpFailure
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidCInstructionJump(this);
@@ -1099,7 +1451,6 @@ class _$InvalidCInstructionJumpFailure
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1109,7 +1460,6 @@ class _$InvalidCInstructionJumpFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidCInstructionJump?.call(this);
@@ -1119,7 +1469,6 @@ class _$InvalidCInstructionJumpFailure
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1129,7 +1478,6 @@ class _$InvalidCInstructionJumpFailure
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -1141,15 +1489,30 @@ class _$InvalidCInstructionJumpFailure
 }
 
 abstract class InvalidCInstructionJumpFailure implements Failure {
-  const factory InvalidCInstructionJumpFailure() =
-      _$InvalidCInstructionJumpFailure;
+  const factory InvalidCInstructionJumpFailure(
+      {required InvalidCInstructionJumpType type,
+      int? lineNumber,
+      String? line}) = _$InvalidCInstructionJumpFailure;
+
+  InvalidCInstructionJumpType get type => throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidCInstructionJumpFailureCopyWith<InvalidCInstructionJumpFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvalidFilePathFailureCopyWith<$Res> {
+abstract class $InvalidFilePathFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidFilePathFailureCopyWith(InvalidFilePathFailure value,
           $Res Function(InvalidFilePathFailure) then) =
       _$InvalidFilePathFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({InvalidFilePathType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -1162,74 +1525,152 @@ class _$InvalidFilePathFailureCopyWithImpl<$Res>
 
   @override
   InvalidFilePathFailure get _value => super._value as InvalidFilePathFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidFilePathFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidFilePathType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidFilePathFailure implements InvalidFilePathFailure {
-  const _$InvalidFilePathFailure();
+  const _$InvalidFilePathFailure(
+      {required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidFilePathType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.InvalidFilePath()';
+    return 'Failure.InvalidFilePath(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidFilePathFailure);
+    return identical(this, other) ||
+        (other is InvalidFilePathFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidFilePathFailureCopyWith<InvalidFilePathFailure> get copyWith =>
+      _$InvalidFilePathFailureCopyWithImpl<InvalidFilePathFailure>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return InvalidFilePath();
+    return InvalidFilePath(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return InvalidFilePath?.call();
+    return InvalidFilePath?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (InvalidFilePath != null) {
-      return InvalidFilePath();
+      return InvalidFilePath(type, lineNumber, line);
     }
     return orElse();
   }
@@ -1238,7 +1679,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -1248,8 +1688,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return InvalidFilePath(this);
@@ -1259,7 +1697,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1269,7 +1706,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return InvalidFilePath?.call(this);
@@ -1279,7 +1715,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1289,7 +1724,6 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -1301,174 +1735,30 @@ class _$InvalidFilePathFailure implements InvalidFilePathFailure {
 }
 
 abstract class InvalidFilePathFailure implements Failure {
-  const factory InvalidFilePathFailure() = _$InvalidFilePathFailure;
+  const factory InvalidFilePathFailure(
+      {required InvalidFilePathType type,
+      int? lineNumber,
+      String? line}) = _$InvalidFilePathFailure;
+
+  InvalidFilePathType get type => throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidFilePathFailureCopyWith<InvalidFilePathFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SymbolDoesNotExistFailureCopyWith<$Res> {
-  factory $SymbolDoesNotExistFailureCopyWith(SymbolDoesNotExistFailure value,
-          $Res Function(SymbolDoesNotExistFailure) then) =
-      _$SymbolDoesNotExistFailureCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SymbolDoesNotExistFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
-    implements $SymbolDoesNotExistFailureCopyWith<$Res> {
-  _$SymbolDoesNotExistFailureCopyWithImpl(SymbolDoesNotExistFailure _value,
-      $Res Function(SymbolDoesNotExistFailure) _then)
-      : super(_value, (v) => _then(v as SymbolDoesNotExistFailure));
-
-  @override
-  SymbolDoesNotExistFailure get _value =>
-      super._value as SymbolDoesNotExistFailure;
-}
-
-/// @nodoc
-
-class _$SymbolDoesNotExistFailure implements SymbolDoesNotExistFailure {
-  const _$SymbolDoesNotExistFailure();
-
-  @override
-  String toString() {
-    return 'Failure.symbolDoesNotExist()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SymbolDoesNotExistFailure);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
-  }) {
-    return symbolDoesNotExist();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
-  }) {
-    return symbolDoesNotExist?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
-    required TResult orElse(),
-  }) {
-    if (symbolDoesNotExist != null) {
-      return symbolDoesNotExist();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
-    required TResult Function(InvalidAInstructionValueFailure value)
-        invalidAInstructionValue,
-    required TResult Function(InvalidCInstructionDestinationFailure value)
-        invalidCInstructionDestination,
-    required TResult Function(InvalidCInstructionComputationFailure value)
-        invalidCInstructionComputation,
-    required TResult Function(InvalidCInstructionJumpFailure value)
-        invalidCInstructionJump,
-    required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
-    required TResult Function(InvalidLabelFailure value) invalidLabel,
-  }) {
-    return symbolDoesNotExist(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
-    TResult Function(InvalidAInstructionValueFailure value)?
-        invalidAInstructionValue,
-    TResult Function(InvalidCInstructionDestinationFailure value)?
-        invalidCInstructionDestination,
-    TResult Function(InvalidCInstructionComputationFailure value)?
-        invalidCInstructionComputation,
-    TResult Function(InvalidCInstructionJumpFailure value)?
-        invalidCInstructionJump,
-    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
-    TResult Function(InvalidLabelFailure value)? invalidLabel,
-  }) {
-    return symbolDoesNotExist?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
-    TResult Function(InvalidAInstructionValueFailure value)?
-        invalidAInstructionValue,
-    TResult Function(InvalidCInstructionDestinationFailure value)?
-        invalidCInstructionDestination,
-    TResult Function(InvalidCInstructionComputationFailure value)?
-        invalidCInstructionComputation,
-    TResult Function(InvalidCInstructionJumpFailure value)?
-        invalidCInstructionJump,
-    TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
-    TResult Function(InvalidLabelFailure value)? invalidLabel,
-    required TResult orElse(),
-  }) {
-    if (symbolDoesNotExist != null) {
-      return symbolDoesNotExist(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SymbolDoesNotExistFailure implements Failure {
-  const factory SymbolDoesNotExistFailure() = _$SymbolDoesNotExistFailure;
-}
-
-/// @nodoc
-abstract class $InvalidLabelFailureCopyWith<$Res> {
+abstract class $InvalidLabelFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $InvalidLabelFailureCopyWith(
           InvalidLabelFailure value, $Res Function(InvalidLabelFailure) then) =
       _$InvalidLabelFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({InvalidLabelType type, int? lineNumber, String? line});
 }
 
 /// @nodoc
@@ -1481,74 +1771,150 @@ class _$InvalidLabelFailureCopyWithImpl<$Res>
 
   @override
   InvalidLabelFailure get _value => super._value as InvalidLabelFailure;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? lineNumber = freezed,
+    Object? line = freezed,
+  }) {
+    return _then(InvalidLabelFailure(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InvalidLabelType,
+      lineNumber: lineNumber == freezed
+          ? _value.lineNumber
+          : lineNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      line: line == freezed
+          ? _value.line
+          : line // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidLabelFailure implements InvalidLabelFailure {
-  const _$InvalidLabelFailure();
+  const _$InvalidLabelFailure({required this.type, this.lineNumber, this.line});
+
+  @override
+  final InvalidLabelType type;
+  @override
+  final int? lineNumber;
+  @override
+  final String? line;
 
   @override
   String toString() {
-    return 'Failure.invalidLabel()';
+    return 'Failure.invalidLabel(type: $type, lineNumber: $lineNumber, line: $line)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidLabelFailure);
+    return identical(this, other) ||
+        (other is InvalidLabelFailure &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.lineNumber, lineNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.lineNumber, lineNumber)) &&
+            (identical(other.line, line) ||
+                const DeepCollectionEquality().equals(other.line, line)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(lineNumber) ^
+      const DeepCollectionEquality().hash(line);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidLabelFailureCopyWith<InvalidLabelFailure> get copyWith =>
+      _$InvalidLabelFailureCopyWithImpl<InvalidLabelFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() notInstruction,
-    required TResult Function() valueTooLarge,
-    required TResult Function() invalidAInstructionValue,
-    required TResult Function() invalidCInstructionDestination,
-    required TResult Function() invalidCInstructionComputation,
-    required TResult Function() invalidCInstructionJump,
-    required TResult Function() InvalidFilePath,
-    required TResult Function() symbolDoesNotExist,
-    required TResult Function() invalidLabel,
+    required TResult Function(
+            NotInstructionType type, int? lineNumber, String? line)
+        notInstruction,
+    required TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)
+        invalidAInstructionValue,
+    required TResult Function(InvalidCInstructionDestinationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionDestination,
+    required TResult Function(InvalidCInstructionComputationType type,
+            int? lineNumber, String? line)
+        invalidCInstructionComputation,
+    required TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)
+        invalidCInstructionJump,
+    required TResult Function(
+            InvalidFilePathType type, int? lineNumber, String? line)
+        InvalidFilePath,
+    required TResult Function(
+            InvalidLabelType type, int? lineNumber, String? line)
+        invalidLabel,
   }) {
-    return invalidLabel();
+    return invalidLabel(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
   }) {
-    return invalidLabel?.call();
+    return invalidLabel?.call(type, lineNumber, line);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? notInstruction,
-    TResult Function()? valueTooLarge,
-    TResult Function()? invalidAInstructionValue,
-    TResult Function()? invalidCInstructionDestination,
-    TResult Function()? invalidCInstructionComputation,
-    TResult Function()? invalidCInstructionJump,
-    TResult Function()? InvalidFilePath,
-    TResult Function()? symbolDoesNotExist,
-    TResult Function()? invalidLabel,
+    TResult Function(NotInstructionType type, int? lineNumber, String? line)?
+        notInstruction,
+    TResult Function(
+            InvalidAInstructionValueType type, int? lineNumber, String? line)?
+        invalidAInstructionValue,
+    TResult Function(InvalidCInstructionDestinationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionDestination,
+    TResult Function(InvalidCInstructionComputationType type, int? lineNumber,
+            String? line)?
+        invalidCInstructionComputation,
+    TResult Function(
+            InvalidCInstructionJumpType type, int? lineNumber, String? line)?
+        invalidCInstructionJump,
+    TResult Function(InvalidFilePathType type, int? lineNumber, String? line)?
+        InvalidFilePath,
+    TResult Function(InvalidLabelType type, int? lineNumber, String? line)?
+        invalidLabel,
     required TResult orElse(),
   }) {
     if (invalidLabel != null) {
-      return invalidLabel();
+      return invalidLabel(type, lineNumber, line);
     }
     return orElse();
   }
@@ -1557,7 +1923,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(NotInstructionFailure value) notInstruction,
-    required TResult Function(ValueTooLargeFailure value) valueTooLarge,
     required TResult Function(InvalidAInstructionValueFailure value)
         invalidAInstructionValue,
     required TResult Function(InvalidCInstructionDestinationFailure value)
@@ -1567,8 +1932,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
     required TResult Function(InvalidCInstructionJumpFailure value)
         invalidCInstructionJump,
     required TResult Function(InvalidFilePathFailure value) InvalidFilePath,
-    required TResult Function(SymbolDoesNotExistFailure value)
-        symbolDoesNotExist,
     required TResult Function(InvalidLabelFailure value) invalidLabel,
   }) {
     return invalidLabel(this);
@@ -1578,7 +1941,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1588,7 +1950,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
   }) {
     return invalidLabel?.call(this);
@@ -1598,7 +1959,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(NotInstructionFailure value)? notInstruction,
-    TResult Function(ValueTooLargeFailure value)? valueTooLarge,
     TResult Function(InvalidAInstructionValueFailure value)?
         invalidAInstructionValue,
     TResult Function(InvalidCInstructionDestinationFailure value)?
@@ -1608,7 +1968,6 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
     TResult Function(InvalidCInstructionJumpFailure value)?
         invalidCInstructionJump,
     TResult Function(InvalidFilePathFailure value)? InvalidFilePath,
-    TResult Function(SymbolDoesNotExistFailure value)? symbolDoesNotExist,
     TResult Function(InvalidLabelFailure value)? invalidLabel,
     required TResult orElse(),
   }) {
@@ -1620,5 +1979,18 @@ class _$InvalidLabelFailure implements InvalidLabelFailure {
 }
 
 abstract class InvalidLabelFailure implements Failure {
-  const factory InvalidLabelFailure() = _$InvalidLabelFailure;
+  const factory InvalidLabelFailure(
+      {required InvalidLabelType type,
+      int? lineNumber,
+      String? line}) = _$InvalidLabelFailure;
+
+  InvalidLabelType get type => throw _privateConstructorUsedError;
+  @override
+  int? get lineNumber => throw _privateConstructorUsedError;
+  @override
+  String? get line => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidLabelFailureCopyWith<InvalidLabelFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

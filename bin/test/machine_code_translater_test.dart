@@ -24,8 +24,11 @@ void main() {
       () async {
         //arrange
         //act
-        final failureOrMachineCodeInstruction =
-            machineCodeTranslator.translate(assemblyInstruction);
+        final failureOrMachineCodeInstruction = machineCodeTranslator.translate(
+          instruction: assemblyInstruction,
+          lineNumber: 0,
+          line: '',
+        );
         //assert
         expect(
           failureOrMachineCodeInstruction,
@@ -52,13 +55,21 @@ void main() {
     final notANumber = 'NaN';
     translatorTableTest(
       assemblyInstruction: AInstruction(value: notANumber),
-      expected: left(InvalidAInstructionValueFailure()),
+      expected: left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.notANumber,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     final beyondMaxValue = (AInstructionParser.maxVal + 1).toString();
     translatorTableTest(
       assemblyInstruction: AInstruction(value: (beyondMaxValue)),
-      expected: left(ValueTooLargeFailure()),
+      expected: left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.valueTooLarge,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     //CInstruction
@@ -118,7 +129,11 @@ void main() {
     );
     translatorTableTest(
       assemblyInstruction: emptyCInstruction,
-      expected: left(InvalidCInstructionComputationFailure()),
+      expected: left(InvalidCInstructionComputationFailure(
+        type: InvalidCInstructionComputationType.notFound,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     final emptyComputationCInstruction = CInstruction(
@@ -128,7 +143,11 @@ void main() {
     );
     translatorTableTest(
       assemblyInstruction: emptyComputationCInstruction,
-      expected: left(InvalidCInstructionComputationFailure()),
+      expected: left(InvalidCInstructionComputationFailure(
+        type: InvalidCInstructionComputationType.notFound,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     final invalidDestinationCInstruction = CInstruction(
@@ -138,7 +157,11 @@ void main() {
     );
     translatorTableTest(
       assemblyInstruction: invalidDestinationCInstruction,
-      expected: left(InvalidCInstructionDestinationFailure()),
+      expected: left(InvalidCInstructionDestinationFailure(
+        type: InvalidCInstructionDestinationType.notFound,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     final invalidComputationCInstruction = CInstruction(
@@ -148,7 +171,11 @@ void main() {
     );
     translatorTableTest(
       assemblyInstruction: invalidComputationCInstruction,
-      expected: left(InvalidCInstructionComputationFailure()),
+      expected: left(InvalidCInstructionComputationFailure(
+        type: InvalidCInstructionComputationType.notFound,
+        lineNumber: 0,
+        line: '',
+      )),
     );
 
     final invalidJumpCInstruction = CInstruction(
@@ -158,7 +185,11 @@ void main() {
     );
     translatorTableTest(
       assemblyInstruction: invalidJumpCInstruction,
-      expected: left(InvalidCInstructionJumpFailure()),
+      expected: left(InvalidCInstructionJumpFailure(
+        type: InvalidCInstructionJumpType.notFound,
+        lineNumber: 0,
+        line: '',
+      )),
     );
   });
 }

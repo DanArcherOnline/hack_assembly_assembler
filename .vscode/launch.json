@@ -32,6 +32,16 @@
                 "-p",
                 "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/pong/Pong.asm"
             ],
+        },
+        {
+            "name": "Convert Max.asm",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/assembler/main.dart",
+            "args": [
+                "-p",
+                "/Users/danarcher/Downloads/_Studies/nand2tetris/projects/06/max/Max.asm"
+            ],
         }
     ]
 }

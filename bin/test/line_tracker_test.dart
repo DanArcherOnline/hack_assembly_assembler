@@ -12,46 +12,84 @@ void main() {
   setUp(() {
     lineTracker = sl<LineTracker>();
   });
-  group('incrementLineCount', () {
+  group('incrementLineCounters', () {
     test(
-      'should increment currentLine when shouldIncrement is true',
+      'should increment currentLineNumber when isWhitespaceORComment is true',
       () async {
         //arrange
         //act
         for (var i = 0; i < 10; i++) {
-          lineTracker.incrementLineCount(shouldIncrement: true);
+          lineTracker.incrementLineCounters(isParsableCode: true);
         }
         //assert
-        expect(lineTracker.currentLine, 10);
+        expect(lineTracker.currentLineNumber, 10);
       },
     );
 
     test(
-      'should not increment currentLine when shouldIncrement is true',
+      'should increment currentLineNumber when isWhitespaceORComment is false',
       () async {
         //arrange
         //act
         for (var i = 0; i < 10; i++) {
-          lineTracker.incrementLineCount(shouldIncrement: false);
+          lineTracker.incrementLineCounters(isParsableCode: false);
         }
         //assert
-        expect(lineTracker.currentLine, 0);
+        expect(lineTracker.currentLineNumber, 10);
+      },
+    );
+    test(
+      'should not increment currentCodeLineNumber when isWhitespaceORComment is true',
+      () async {
+        //arrange
+        //act
+        for (var i = 0; i < 10; i++) {
+          lineTracker.incrementLineCounters(isParsableCode: true);
+        }
+        //assert
+        expect(lineTracker.currentCodeLineNumber, 0);
+      },
+    );
+
+    test(
+      'should increment currentCodeLineNumber when shouldIncrement is false',
+      () async {
+        //arrange
+        //act
+        for (var i = 0; i < 10; i++) {
+          lineTracker.incrementLineCounters(isParsableCode: false);
+        }
+        //assert
+        expect(lineTracker.currentCodeLineNumber, 10);
       },
     );
   });
 
   group('resetLine/count', () {
     test(
-      'should set currentLine to 0',
+      'should set currentLineNumber to 0',
       () async {
         //arrange
         for (var i = 0; i < 10; i++) {
-          lineTracker.incrementLineCount(shouldIncrement: true);
+          lineTracker.incrementLineCounters(isParsableCode: true);
         }
         //act
-        lineTracker.resetLineCount();
+        lineTracker.resetLineCounters();
         //assert
-        expect(lineTracker.currentLine, 0);
+        expect(lineTracker.currentLineNumber, 0);
+      },
+    );
+    test(
+      'should set currentCodeLineNumber to 0',
+      () async {
+        //arrange
+        for (var i = 0; i < 10; i++) {
+          lineTracker.incrementLineCounters(isParsableCode: true);
+        }
+        //act
+        lineTracker.resetLineCounters();
+        //assert
+        expect(lineTracker.currentCodeLineNumber, 0);
       },
     );
   });

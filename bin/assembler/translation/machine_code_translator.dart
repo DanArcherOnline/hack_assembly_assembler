@@ -62,23 +62,44 @@ class MachineCodeTranslator {
     'JLE': '110',
     'JMP': '111',
   };
-  FailureOrMachineCodeInstruction translate(AssemblyInstruction instruction) {
+  FailureOrMachineCodeInstruction translate({
+    required AssemblyInstruction instruction,
+    required int lineNumber,
+    required String line,
+  }) {
     final failureOrBinaryInstruction = instruction.map(
-      aInstruction: _translateAInstruction,
-      cInstruction: _translateCInstruction,
+      aInstruction: (aInstruction) => _translateAInstruction(
+          aInstruction: aInstruction, lineNumber: lineNumber, rawCode: line),
+      cInstruction: (cInstruction) => _translateCInstruction(
+        cInstruction: cInstruction,
+        lineNumber: lineNumber,
+        rawCode: line,
+      ),
     );
     return failureOrBinaryInstruction.map(
       (binaryString) => MachineCodeInstruction(value: binaryString),
     );
   }
 
-  Either<Failure, String> _translateAInstruction(AInstruction aInstruction) {
+  Either<Failure, String> _translateAInstruction({
+    required AInstruction aInstruction,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     const aInstructionTypeBinary = '0';
     final aInstructionValue = int.tryParse(aInstruction.value);
     if (aInstructionValue == null) {
-      return left(InvalidAInstructionValueFailure());
+      return left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.notANumber,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     } else if (aInstructionValue > AInstructionParser.maxVal) {
-      return left(ValueTooLargeFailure());
+      return left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.valueTooLarge,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     final aInstructionValueBinary = aInstructionValue.toBinary();
     final fullAInstructionValueBinary = aInstructionValueBinary.padLeft(
@@ -88,26 +109,51 @@ class MachineCodeTranslator {
     return right(aInstructionBinary);
   }
 
-  Either<Failure, String> _translateCInstruction(CInstruction cInstruction) {
+  Either<Failure, String> _translateCInstruction({
+    required CInstruction cInstruction,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     Failure? failure;
     const cInstructionTypeBinary = '111';
     final binaryInstruciton = StringBuffer();
     binaryInstruciton.write(cInstructionTypeBinary);
-    failure ??=
-        writeComputationBinaryToStringBuffer(cInstruction, binaryInstruciton);
-    failure ??=
-        writeDestinationBinaryToStringBuffer(cInstruction, binaryInstruciton);
-    failure ??= writeJumpBinaryToStringBuffer(cInstruction, binaryInstruciton);
+    failure ??= writeComputationBinaryToStringBuffer(
+      cInstruction: cInstruction,
+      binaryInstruciton: binaryInstruciton,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
+    failure ??= writeDestinationBinaryToStringBuffer(
+      cInstruction: cInstruction,
+      binaryInstruciton: binaryInstruciton,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
+    failure ??= writeJumpBinaryToStringBuffer(
+      cInstruction: cInstruction,
+      binaryInstruciton: binaryInstruciton,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     if (failure != null) {
       return left(failure);
     }
     return right(binaryInstruciton.toString());
   }
 
-  Failure? writeJumpBinaryToStringBuffer(
-      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+  Failure? writeJumpBinaryToStringBuffer({
+    required CInstruction cInstruction,
+    required StringBuffer binaryInstruciton,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     Failure? failure;
-    final failureOrJumpBinary = _translateJumpToBinary(cInstruction.jump);
+    final failureOrJumpBinary = _translateJumpToBinary(
+      jump: cInstruction.jump,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrJumpBinary.fold(
       (f) => failure ??= f,
       (jump) => binaryInstruciton.write(jump),
@@ -116,10 +162,17 @@ class MachineCodeTranslator {
   }
 
   Failure? writeComputationBinaryToStringBuffer(
-      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+      {required CInstruction cInstruction,
+      required StringBuffer binaryInstruciton,
+      required int lineNumber,
+      required String rawCode,
+      required}) {
     Failure? failure;
-    final failureOrCompBinary =
-        _translateComputationToBinary(cInstruction.computation);
+    final failureOrCompBinary = _translateComputationToBinary(
+      computation: cInstruction.computation,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrCompBinary.fold(
       (f) => failure ??= f,
       (comp) => binaryInstruciton.write(comp),
@@ -127,11 +180,18 @@ class MachineCodeTranslator {
     return failure;
   }
 
-  Failure? writeDestinationBinaryToStringBuffer(
-      CInstruction cInstruction, StringBuffer binaryInstruciton) {
+  Failure? writeDestinationBinaryToStringBuffer({
+    required CInstruction cInstruction,
+    required StringBuffer binaryInstruciton,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     Failure? failure;
-    final failureOrDestBinary =
-        _translateDestinationToBinary(cInstruction.destination);
+    final failureOrDestBinary = _translateDestinationToBinary(
+      destination: cInstruction.destination,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrDestBinary.fold(
       (f) => failure ??= f,
       (dest) => binaryInstruciton.write(dest),
@@ -139,19 +199,31 @@ class MachineCodeTranslator {
     return failure;
   }
 
-  Either<Failure, String?> _translateDestinationToBinary(String? destination) {
+  Either<Failure, String?> _translateDestinationToBinary({
+    required String? destination,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     if (destination == null) {
       final nullDestBinary = destinationTranslationTable['null'];
       return right(nullDestBinary);
     }
     final destBinary = destinationTranslationTable[destination];
     if (destBinary == null) {
-      return left(InvalidCInstructionDestinationFailure());
+      return left(InvalidCInstructionDestinationFailure(
+        type: InvalidCInstructionDestinationType.notFound,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     return right(destBinary);
   }
 
-  Either<Failure, String?> _translateComputationToBinary(String? computation) {
+  Either<Failure, String?> _translateComputationToBinary({
+    required String? computation,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     const compTable0BinaryPrefix = '0';
     const compTable1BinaryPrefix = '1';
     final compTranslationFromTable0 = computationTranslationTable0[computation];
@@ -162,8 +234,13 @@ class MachineCodeTranslator {
     if (compTranslationFromTable1 != null) {
       return right(compTable1BinaryPrefix + compTranslationFromTable1);
     }
-    return left(InvalidCInstructionComputationFailure());
+    return left(InvalidCInstructionComputationFailure(
+      type: InvalidCInstructionComputationType.notFound,
+      lineNumber: lineNumber,
+      line: rawCode,
+    ));
 
+    //TODO decide to delete or not
     // if (compTranslationFromTable0 == null) {
     //   final compTranslationFromTable1 =
     //       computationTranslationTable1[computation];
@@ -181,14 +258,22 @@ class MachineCodeTranslator {
     // }
   }
 
-  Either<Failure, String?> _translateJumpToBinary(String? jump) {
+  Either<Failure, String?> _translateJumpToBinary({
+    required String? jump,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     if (jump == null) {
       final nullJumpBinary = jumpTranslationTable['null'];
       return right(nullJumpBinary);
     }
     final jumpBinary = jumpTranslationTable[jump];
     if (jumpBinary == null) {
-      return left(InvalidCInstructionJumpFailure());
+      return left(InvalidCInstructionJumpFailure(
+        type: InvalidCInstructionJumpType.notFound,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     return right(jumpBinary);
   }

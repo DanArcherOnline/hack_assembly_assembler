@@ -46,7 +46,9 @@ class Symbols {
 
   Option<Failure> put(String key, String symbol) {
     if (_symbols.containsKey(key)) {
-      return some(InvalidLabelFailure());
+      return some(InvalidLabelFailure(
+        type: InvalidLabelType.alreadyExists,
+      ));
     }
     _symbols[key] = symbol;
     return none();

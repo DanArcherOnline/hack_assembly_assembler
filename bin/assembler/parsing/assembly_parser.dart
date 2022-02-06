@@ -22,13 +22,33 @@ class AssemblyParser {
     required int lineNumber,
   }) {
     final code = minifyCode(line);
+    //TODO add tests for comments/whitespace checking
+    if (code.isEmpty) {
+      return left(NotInstructionFailure(
+        type: NotInstructionType.validNonCode,
+        lineNumber: lineNumber,
+        line: line,
+      ));
+    }
     if (aInstructionParser.isValid(code)) {
-      return aInstructionParser.parse(code: code, lineNumber: lineNumber);
+      return aInstructionParser.parse(
+        minifiedCode: code,
+        rawCode: line,
+        lineNumber: lineNumber,
+      );
     }
     if (cInstructionParser.isValid(code)) {
-      return cInstructionParser.parse(code: code, lineNumber: lineNumber);
+      return cInstructionParser.parse(
+        minifiedCode: code,
+        rawCode: line,
+        lineNumber: lineNumber,
+      );
     }
-    return left(NotInstructionFailure());
+    return left(NotInstructionFailure(
+      type: NotInstructionType.invalidSyntax,
+      lineNumber: lineNumber,
+      line: line,
+    ));
   }
 
   String minifyCode(String line) {

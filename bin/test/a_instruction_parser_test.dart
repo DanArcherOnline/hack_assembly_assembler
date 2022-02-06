@@ -59,7 +59,11 @@ void main() {
         final code = '@26';
         final expectedAInstruction = AInstruction(value: '26');
         //act
-        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
+        final instruction = aInstructionParser.parse(
+          minifiedCode: code,
+          lineNumber: 0,
+          rawCode: code,
+        );
         //assert
         expect(instruction, right(expectedAInstruction));
       },
@@ -72,10 +76,20 @@ void main() {
         //arrange
         final beyondMaxValCode = '@${AInstructionParser.maxVal + 1}';
         //act
-        final failure =
-            aInstructionParser.parse(code: beyondMaxValCode, lineNumber: 0);
+        final failure = aInstructionParser.parse(
+          minifiedCode: beyondMaxValCode,
+          lineNumber: 0,
+          rawCode: beyondMaxValCode,
+        );
         //assert
-        expect(failure, left(InvalidAInstructionValueFailure()));
+        expect(
+          failure,
+          left(InvalidAInstructionValueFailure(
+            type: InvalidAInstructionValueType.valueTooLarge,
+            lineNumber: 0,
+            line: beyondMaxValCode,
+          )),
+        );
       },
     );
 
@@ -91,29 +105,35 @@ void main() {
         when(symbols.get(extractedCode)).thenAnswer((_) => right('15'));
         when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
         //act
-        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
+        final instruction = aInstructionParser.parse(
+          minifiedCode: code,
+          lineNumber: 0,
+          rawCode: code,
+        );
         //assert
         expect(instruction, right(expectedAInstruction));
       },
     );
 
-    test(
-      'should return a SymbolDoesNotExistFailure '
-      'when the symbol given does not exist in Symbols',
-      () async {
-        //arrange
-        final code = '@IShouldNotExist';
-        final extractedCode = 'IShouldNotExist';
-        when(symbols.get(extractedCode))
-            .thenAnswer((_) => left(SymbolDoesNotExistFailure()));
-        when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
+    //TODO delete if not needed
+    // test(
+    //   'should return a SymbolDoesNotExistFailure '
+    //   'when the symbol given does not exist in Symbols',
+    //   () async {
+    //     //arrange
+    //     final code = '@IShouldNotExist';
+    //     final extractedCode = 'IShouldNotExist';
+    //     when(symbols.get(extractedCode))
+    //         .thenAnswer((_) => left(SymbolDoesNotExistFailure()));
+    //     when(symbols.isValidKey(extractedCode)).thenAnswer((_) => true);
 
-        //act
-        final instruction = aInstructionParser.parse(code: code, lineNumber: 0);
-        //assert
-        expect(instruction, left(SymbolDoesNotExistFailure()));
-      },
-    );
+    //     //act
+    //     final instruction =
+    //         aInstructionParser.parse(minifiedCode: code, lineNumber: 0);
+    //     //assert
+    //     expect(instruction, left(SymbolDoesNotExistFailure()));
+    //   },
+    // );
 
     test(
       'should return an InvalidAInstructionFailure '
@@ -124,10 +144,20 @@ void main() {
         final invalidSymbolKey = '/IShouldNotExist';
         when(symbols.isValidKey(invalidSymbolKey)).thenAnswer((_) => false);
         //act
-        final instruction =
-            aInstructionParser.parse(code: invalidSymbolCode, lineNumber: 0);
+        final instruction = aInstructionParser.parse(
+          minifiedCode: invalidSymbolCode,
+          lineNumber: 0,
+          rawCode: invalidSymbolCode,
+        );
         //assert
-        expect(instruction, left(InvalidAInstructionValueFailure()));
+        expect(
+          instruction,
+          left(InvalidAInstructionValueFailure(
+            type: InvalidAInstructionValueType.invalidSymbolSyntax,
+            lineNumber: 0,
+            line: invalidSymbolCode,
+          )),
+        );
       },
     );
   });

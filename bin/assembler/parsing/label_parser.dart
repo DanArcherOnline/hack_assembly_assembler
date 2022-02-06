@@ -13,13 +13,28 @@ class LabelParser {
 
   bool isLabel(String code) => code.startsWith(labelDelimeter);
 
-  Option<Failure> parseLabel(String code, int lineNumber) {
-    if (!isValidLabel(code)) {
-      return some(InvalidLabelFailure());
+  Option<Failure> parseLabel({required String line, required int lineNumber}) {
+    if (!isValidLabel(line)) {
+      return some(InvalidLabelFailure(
+        type: InvalidLabelType.invalidSyntax,
+        lineNumber: lineNumber,
+        line: line,
+      ));
     }
-    final labelKey = _extractKey(code);
-    _symbols.put(labelKey, lineNumber.toString());
-    return none();
+    final labelKey = _extractKey(line);
+    //TODO test new logic
+    final failureOption = _symbols.put(labelKey, lineNumber.toString());
+    final invalidLabelFailureOption = failureOption.map(
+      (failure) => failure.maybeMap(
+        invalidLabel: (invalidLabel) => InvalidLabelFailure(
+          type: invalidLabel.type,
+          lineNumber: lineNumber,
+          line: line,
+        ),
+        orElse: () => throw Exception('An unexpected error has occured'),
+      ),
+    );
+    return invalidLabelFailureOption;
   }
 
   bool isValidLabel(code) => RegExp(r'^\([a-zA-Z][^ ]*\)$').hasMatch(code);

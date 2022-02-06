@@ -106,7 +106,12 @@ void main() {
           preExistingCustomSymbolValue,
         );
         //assert
-        expect(failureOrSymbolValue, some(InvalidLabelFailure()));
+        expect(
+          failureOrSymbolValue,
+          some(InvalidLabelFailure(
+            type: InvalidLabelType.alreadyExists,
+          )),
+        );
       },
     );
   });

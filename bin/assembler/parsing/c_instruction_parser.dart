@@ -65,7 +65,8 @@ class CInstructionParser implements InstructionParser {
 
   @override
   FailureOrInstruction parse({
-    required String code,
+    required String minifiedCode,
+    required String rawCode,
     required int lineNumber,
   }) {
     Failure? failure;
@@ -73,19 +74,31 @@ class CInstructionParser implements InstructionParser {
     String? computation;
     String? jump;
 
-    final failureOrDest = _parseDestination(code);
+    final failureOrDest = _parseDestination(
+      code: minifiedCode,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrDest.fold(
       (f) => failure ??= f,
       (dest) => destination = dest,
     );
 
-    final failureOrComp = _parseComputation(code);
+    final failureOrComp = _parseComputation(
+      code: minifiedCode,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrComp.fold(
       (f) => failure ??= f,
       (comp) => computation = comp,
     );
 
-    final failureOrJump = _parseJump(code);
+    final failureOrJump = _parseJump(
+      code: minifiedCode,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
     failureOrJump.fold(
       (f) => failure ??= f,
       (jmp) => jump = jmp,
@@ -103,19 +116,31 @@ class CInstructionParser implements InstructionParser {
     return right(instruction);
   }
 
-  Either<Failure, String?> _parseDestination(String code) {
+  Either<Failure, String?> _parseDestination({
+    required String code,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     if (_hasDestination(code)) {
       final intendedDest = _extractDestinationFromCode(code);
       if (_isValidDestination(intendedDest)) {
         return right(intendedDest);
       } else {
-        return left(InvalidCInstructionDestinationFailure());
+        return left(InvalidCInstructionDestinationFailure(
+          type: InvalidCInstructionDestinationType.invalidSyntax,
+          lineNumber: lineNumber,
+          line: rawCode,
+        ));
       }
     }
     return right(null);
   }
 
-  Either<Failure, String?> _parseComputation(String code) {
+  Either<Failure, String?> _parseComputation({
+    required String code,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     var intendedComp = _extractComputation(code);
     if (intendedComp != null && _isValidComputation(intendedComp)) {
       return right(intendedComp);
@@ -123,7 +148,11 @@ class CInstructionParser implements InstructionParser {
     if (_isValidComputation(code)) {
       return right(code);
     }
-    return left(InvalidCInstructionComputationFailure());
+    return left(InvalidCInstructionComputationFailure(
+      type: InvalidCInstructionComputationType.invalidSyntax,
+      lineNumber: lineNumber,
+      line: rawCode,
+    ));
   }
 
   String? _extractComputation(String code) {
@@ -136,7 +165,11 @@ class CInstructionParser implements InstructionParser {
     return intendedJumpComp;
   }
 
-  Either<Failure, String?> _parseJump(String code) {
+  Either<Failure, String?> _parseJump({
+    required String code,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     final startIndex = code.indexOf(';');
     if (startIndex == -1) {
       return right(null);
@@ -146,7 +179,11 @@ class CInstructionParser implements InstructionParser {
     if (_isValidJump(intendedJump)) {
       return right(intendedJump);
     }
-    return left(InvalidCInstructionJumpFailure());
+    return left(InvalidCInstructionJumpFailure(
+      type: InvalidCInstructionJumpType.invalidSyntax,
+      lineNumber: lineNumber,
+      line: rawCode,
+    ));
   }
 
   bool _isValidJump(String intendedJump) => validJumps.contains(intendedJump);

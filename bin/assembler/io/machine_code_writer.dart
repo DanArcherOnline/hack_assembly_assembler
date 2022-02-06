@@ -1,7 +1,6 @@
 import 'package:file/file.dart';
 import 'package:injectable/injectable.dart';
 
-import '../core/failure.dart';
 import '../translation/machine_code_instruction.dart';
 
 @injectable
@@ -17,10 +16,12 @@ class MachineCodeWriter {
     @factoryParam required String? filePathIn,
   }) {
     if (filePathIn == null) {
-      throw InvalidFilePathFailure();
+      //TODO turn into custom exception, catch it, and map to an InvalidFilePathFailure
+      throw Exception('No file path');
     }
     if (!_isFileExtensionAsm(filePathIn)) {
-      throw InvalidFilePathFailure();
+      //TODO turn into custom exception, catch it, and map to an InvalidFilePathFailure
+      throw Exception('not a .asm file');
     }
     final filePathOut = _convertAsmPathToHackPath(filePathIn);
     assert(_isFileExtensionHack(filePathOut));

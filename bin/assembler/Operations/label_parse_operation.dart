@@ -37,23 +37,34 @@ class LabelParseOperation implements Operation {
           if (waitingLabelCode.isNotEmpty &&
               _assemblyParser.minifyCode(line).isNotEmpty) {
             final prevLabelCode = waitingLabelCode.removeFirst();
-            _labelParser.parseLabel(prevLabelCode, _lineTracker.currentLine);
+            _labelParser.parseLabel(
+              line: prevLabelCode,
+              lineNumber: _lineTracker.currentCodeLineNumber,
+            );
           }
 
           if (_labelParser.isValidLabel(line)) {
             waitingLabelCode.add(line);
           }
 
-          _lineTracker.incrementLineCount(
-              shouldIncrement: _assemblyParser.minifyCode(line).isNotEmpty);
+          _lineTracker.incrementLineCounters(
+            isParsableCode: !_isWhitespaceOrComment(line),
+          );
+          return none();
         });
     if (waitingLabelCode.isNotEmpty) {
-      //TODO save label code and its line number together to use when parsing errors
       final emptyLableCode = waitingLabelCode.removeFirst();
       print('🤮 empty label: $emptyLableCode');
-      return some(InvalidLabelFailure());
+      return some(InvalidLabelFailure(
+        type: InvalidLabelType.unimplementedLabel,
+        lineNumber: _lineTracker.currentLineNumber,
+        line: waitingLabelCode.removeFirst(),
+      ));
     }
     print('🤮 labelParser.debugSymbols: ${_labelParser.debugSymbols}');
     return none();
   }
+
+  bool _isWhitespaceOrComment(String line) =>
+      _assemblyParser.minifyCode(line).isEmpty;
 }

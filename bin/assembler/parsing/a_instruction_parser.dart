@@ -24,37 +24,70 @@ class AInstructionParser implements InstructionParser {
 
   @override
   FailureOrInstruction parse({
-    required String code,
+    required String minifiedCode,
+    required String rawCode,
     required int lineNumber,
   }) {
-    final extractedCode = _extract(code);
+    final extractedCode = _extract(minifiedCode);
     if (extractedCode.isEmpty) {
-      return left(InvalidAInstructionValueFailure());
+      return left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.noValue,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     if (_isValue(extractedCode)) {
-      return _parseValue(extractedCode);
+      return _parseValue(
+        valString: extractedCode,
+        lineNumber: lineNumber,
+        rawCode: rawCode,
+      );
     }
-    return _parseSymbol(extractedCode);
+    return _parseSymbol(
+      symbolKey: extractedCode,
+      lineNumber: lineNumber,
+      rawCode: rawCode,
+    );
   }
 
-  Either<Failure, AInstruction> _parseValue(String valString) {
+  Either<Failure, AInstruction> _parseValue({
+    required String valString,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     late int val;
     try {
       val = int.parse(valString);
     } catch (e) {
-      return left(InvalidAInstructionValueFailure());
+      return left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.notANumber,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     if (_isOverMaxValue(val)) {
-      return left(InvalidAInstructionValueFailure());
+      return left(InvalidAInstructionValueFailure(
+        type: InvalidAInstructionValueType.valueTooLarge,
+        lineNumber: lineNumber,
+        line: rawCode,
+      ));
     }
     return right(AInstruction(value: valString));
   }
 
-  Either<Failure, AInstruction> _parseSymbol(String symbolKey) {
+  Either<Failure, AInstruction> _parseSymbol({
+    required String symbolKey,
+    required int lineNumber,
+    required String rawCode,
+  }) {
     if (_symbols.isValidKey(symbolKey)) {
       return _symbols.get(symbolKey).map((value) => AInstruction(value: value));
     }
-    return left(InvalidAInstructionValueFailure());
+    return left(InvalidAInstructionValueFailure(
+      type: InvalidAInstructionValueType.invalidSymbolSyntax,
+      lineNumber: lineNumber,
+      line: rawCode,
+    ));
   }
 
   String _extract(String code) => code.replaceFirst(aInstructionSymbol, '');

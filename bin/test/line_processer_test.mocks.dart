@@ -2,9 +2,11 @@
 // in hack_to_machine_assmebler/bin/test/line_processer_test.dart.
 // Do not manually edit this file.
 
+import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
-import 'line_processer_test.dart' as _i2;
+import '../assembler/core/failure.dart' as _i4;
+import 'line_processer_test.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -15,16 +17,18 @@ import 'line_processer_test.dart' as _i2;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
+class _FakeOption_0<A> extends _i1.Fake implements _i2.Option<A> {}
+
 /// A class which mocks [TestFuncs].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTestFuncs extends _i1.Mock implements _i2.TestFuncs {
+class MockTestFuncs extends _i1.Mock implements _i3.TestFuncs {
   MockTestFuncs() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  void func(String? line) =>
-      super.noSuchMethod(Invocation.method(#func, [line]),
-          returnValueForMissingStub: null);
+  _i2.Option<_i4.Failure> func(String? line) => (super.noSuchMethod(
+      Invocation.method(#func, [line]),
+      returnValue: _FakeOption_0<_i4.Failure>()) as _i2.Option<_i4.Failure>);
 }

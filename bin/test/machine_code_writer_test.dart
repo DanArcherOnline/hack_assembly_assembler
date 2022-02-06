@@ -3,7 +3,6 @@ import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
 import '../assembler/core/environment.dart';
-import '../assembler/core/failure.dart';
 import '../assembler/core/service_locator.dart';
 import '../assembler/io/machine_code_writer.dart';
 import '../assembler/translation/machine_code_instruction.dart';
@@ -69,7 +68,7 @@ void main() {
         expect(
             () => MachineCodeWriter(
                 fileSystem: MemoryFileSystem(), filePathIn: null),
-            throwsA(isA<InvalidFilePathFailure>()));
+            throwsA(isA<Exception>()));
       },
     );
 
@@ -83,7 +82,7 @@ void main() {
         expect(
             () => MachineCodeWriter(
                 fileSystem: MemoryFileSystem(), filePathIn: nonAsmFilePathIn),
-            throwsA(isA<InvalidFilePathFailure>()));
+            throwsA(isA<Exception>()));
       },
     );
   });
