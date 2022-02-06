@@ -259,13 +259,109 @@ void main() {
     );
 
     test(
-      'should return a NotInstrucitonFailure '
-      'when the line parameter is not a valid A or C Instruction; ',
+      'should return a NotInstrucitonFailure of type invalidSyntax '
+      'when the line parameter is not a valid A or C Instruction',
       () async {
         //arrange
         final line = 'M=M-1ZZZZZ';
         final failure = NotInstructionFailure(
           type: NotInstructionType.invalidSyntax,
+          lineNumber: 0,
+          line: line,
+        );
+        when(aInstructionParser.isValid(any)).thenReturn(false);
+        when(cInstructionParser.isValid(any)).thenReturn(false);
+        //act
+        final instruction = assemblyParser.parse(
+          line: line,
+          lineNumber: 0,
+        );
+        //assert
+        expect(instruction, left(failure));
+        verifyNever(aInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+        verifyNever(cInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+      },
+    );
+    test(
+      'should return a NotInstrucitonFailure of type validNonCode'
+      'when the line of code is all white space',
+      () async {
+        //arrange
+        final line = '        ';
+        final failure = NotInstructionFailure(
+          type: NotInstructionType.validNonCode,
+          lineNumber: 0,
+          line: line,
+        );
+        when(aInstructionParser.isValid(any)).thenReturn(false);
+        when(cInstructionParser.isValid(any)).thenReturn(false);
+        //act
+        final instruction = assemblyParser.parse(
+          line: line,
+          lineNumber: 0,
+        );
+        //assert
+        expect(instruction, left(failure));
+        verifyNever(aInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+        verifyNever(cInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+      },
+    );
+    test(
+      'should return a NotInstrucitonFailure of type validNonCode'
+      'when the line of code is a comment',
+      () async {
+        //arrange
+        final line = ' // just a comment here. nothing to see.';
+        final failure = NotInstructionFailure(
+          type: NotInstructionType.validNonCode,
+          lineNumber: 0,
+          line: line,
+        );
+        when(aInstructionParser.isValid(any)).thenReturn(false);
+        when(cInstructionParser.isValid(any)).thenReturn(false);
+        //act
+        final instruction = assemblyParser.parse(
+          line: line,
+          lineNumber: 0,
+        );
+        //assert
+        expect(instruction, left(failure));
+        verifyNever(aInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+        verifyNever(cInstructionParser.parse(
+          minifiedCode: anyMinifiedCodeArg,
+          lineNumber: anyLineNumberArg,
+          rawCode: anyRawCodeArg,
+        ));
+      },
+    );
+    test(
+      'should return a NotInstrucitonFailure of type validNonCode'
+      'when the line of code is empty',
+      () async {
+        //arrange
+        final line = '';
+        final failure = NotInstructionFailure(
+          type: NotInstructionType.validNonCode,
           lineNumber: 0,
           line: line,
         );

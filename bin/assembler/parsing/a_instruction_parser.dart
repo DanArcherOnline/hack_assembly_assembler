@@ -10,8 +10,7 @@ import 'symbols.dart';
 @injectable
 class AInstructionParser implements InstructionParser {
   static const aInstructionSymbol = '@';
-  //TODO change to correct max value
-  static const maxVal = 1000000;
+  static const maxVal = 32767; //2^15-1
 
   final Symbols _symbols;
 

@@ -68,10 +68,7 @@ enum InvalidFilePathType {
   noFilePath,
   invalidFileExtension,
 }
-//TODO delete if not needed
-enum SymbolDoesNotExistType {
-  a,
-}
+
 enum InvalidLabelType {
   unimplementedLabel,
   invalidSyntax,

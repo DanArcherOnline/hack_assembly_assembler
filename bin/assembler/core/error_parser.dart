@@ -6,7 +6,7 @@ import 'failure.dart';
 
 @injectable
 class ErrorParser {
-  void parse({
+  String? parse({
     required Failure failure,
   }) {
     if (failure.line == null || failure.lineNumber == null) {
@@ -34,10 +34,7 @@ class ErrorParser {
           getInvalidFilePathMessage(InvalidFilePath),
       invalidLabel: (invalidLabel) => getInvalidLabelMessage(invalidLabel),
     );
-    if (message == null) {
-      return;
-    }
-    print(message);
+    return message;
   }
 
   String getInvalidLabelMessage(InvalidLabelFailure invalidLabel) {
@@ -45,13 +42,14 @@ class ErrorParser {
     s.writeln('Line ${invalidLabel.lineNumber}: Invalid Label.');
     switch (invalidLabel.type) {
       case InvalidLabelType.unimplementedLabel:
-        s.write('The label was defined but never given any implementation.');
+        s.writeln('The label was defined but never given any implementation.');
         break;
       case InvalidLabelType.invalidSyntax:
-        s.write('Labels must start with an alphabetical character.');
+        s.writeln('Labels must start with an alphabetical character.');
         break;
       case InvalidLabelType.alreadyExists:
-        s.write('The label already exists. Change one of the labels names.');
+        s.writeln(
+            'There are duplicate labels. Change one of the labels names.');
         break;
     }
     s.writeln('------');
@@ -62,19 +60,16 @@ class ErrorParser {
   String getInvalidFilePathMessage(
       InvalidFilePathFailure invalidFilePathFailure) {
     final s = StringBuffer();
-    s.writeln('Line ${invalidFilePathFailure.lineNumber}: Invalid File Path');
     switch (invalidFilePathFailure.type) {
       case InvalidFilePathType.noFilePath:
-        s.write('No file path was given. '
+        s.writeln('No file path was given. '
             'Run the assmbler with the command '
             '"dart run <file path to main> -p <file path to .asm file>"');
         break;
       case InvalidFilePathType.invalidFileExtension:
-        s.write('The file specified does not have the file extension ".asm');
+        s.writeln('The file specified does not have the file extension ".asm"');
         break;
     }
-    s.writeln('------');
-    s.writeln(invalidFilePathFailure.line);
     return s.toString();
   }
 
@@ -150,7 +145,9 @@ class ErrorParser {
         break;
       case InvalidAInstructionValueType.notANumber:
         s.writeln('The value specified after the "@" character '
-            'was expected to be a number but was not');
+            'was expected to be a number but was not.');
+        s.writeln('It is possible that the value given was too large '
+            'for the system to handle.');
         break;
       case InvalidAInstructionValueType.invalidSymbolSyntax:
         s.writeln('Symbols must start with an alphabetical character.');

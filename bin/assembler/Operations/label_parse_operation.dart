@@ -31,19 +31,22 @@ class LabelParseOperation implements Operation {
   @override
   Future<Option<Failure>> run(File fileIn) async {
     final waitingLabelCode = Queue<String>();
-    await _lineProcesser.processLines(
+    final failureOption = await _lineProcesser.processLines(
         file: fileIn,
         lineOperation: (line) {
           if (waitingLabelCode.isNotEmpty &&
               _assemblyParser.minifyCode(line).isNotEmpty) {
             final prevLabelCode = waitingLabelCode.removeFirst();
-            _labelParser.parseLabel(
+            final failureOption = _labelParser.parseLabel(
               line: prevLabelCode,
               lineNumber: _lineTracker.currentCodeLineNumber,
             );
+            if (failureOption.isSome()) {
+              return failureOption;
+            }
           }
 
-          if (_labelParser.isValidLabel(line)) {
+          if (_labelParser.isLabel(line)) {
             waitingLabelCode.add(line);
           }
 
@@ -54,15 +57,13 @@ class LabelParseOperation implements Operation {
         });
     if (waitingLabelCode.isNotEmpty) {
       final emptyLableCode = waitingLabelCode.removeFirst();
-      print('🤮 empty label: $emptyLableCode');
       return some(InvalidLabelFailure(
         type: InvalidLabelType.unimplementedLabel,
         lineNumber: _lineTracker.currentLineNumber,
-        line: waitingLabelCode.removeFirst(),
+        line: emptyLableCode,
       ));
     }
-    print('🤮 labelParser.debugSymbols: ${_labelParser.debugSymbols}');
-    return none();
+    return failureOption;
   }
 
   bool _isWhitespaceOrCommentOrLabel(String line) =>

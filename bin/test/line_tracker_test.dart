@@ -22,7 +22,7 @@ void main() {
           lineTracker.incrementLineCounters(isParsableCode: true);
         }
         //assert
-        expect(lineTracker.currentLineNumber, 10);
+        expect(lineTracker.currentLineNumber, 11);
       },
     );
 
@@ -35,24 +35,11 @@ void main() {
           lineTracker.incrementLineCounters(isParsableCode: false);
         }
         //assert
-        expect(lineTracker.currentLineNumber, 10);
+        expect(lineTracker.currentLineNumber, 11);
       },
     );
     test(
-      'should not increment currentCodeLineNumber when isWhitespaceORComment is true',
-      () async {
-        //arrange
-        //act
-        for (var i = 0; i < 10; i++) {
-          lineTracker.incrementLineCounters(isParsableCode: true);
-        }
-        //assert
-        expect(lineTracker.currentCodeLineNumber, 0);
-      },
-    );
-
-    test(
-      'should increment currentCodeLineNumber when shouldIncrement is false',
+      'should not increment currentCodeLineNumber when isParsableCode is false',
       () async {
         //arrange
         //act
@@ -60,12 +47,25 @@ void main() {
           lineTracker.incrementLineCounters(isParsableCode: false);
         }
         //assert
+        expect(lineTracker.currentCodeLineNumber, 0);
+      },
+    );
+
+    test(
+      'should increment currentCodeLineNumber when isParsableCode is true',
+      () async {
+        //arrange
+        //act
+        for (var i = 0; i < 10; i++) {
+          lineTracker.incrementLineCounters(isParsableCode: true);
+        }
+        //assert
         expect(lineTracker.currentCodeLineNumber, 10);
       },
     );
   });
 
-  group('resetLine/count', () {
+  group('resetLineCounters', () {
     test(
       'should set currentLineNumber to 0',
       () async {

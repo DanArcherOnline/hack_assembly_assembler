@@ -22,7 +22,6 @@ class LabelParser {
       ));
     }
     final labelKey = _extractKey(line);
-    //TODO test new logic
     final failureOption = _symbols.put(labelKey, lineNumber.toString());
     final invalidLabelFailureOption = failureOption.map(
       (failure) => failure.maybeMap(
@@ -40,7 +39,4 @@ class LabelParser {
   bool isValidLabel(code) => RegExp(r'^\([a-zA-Z][^ ]*\)$').hasMatch(code);
 
   String _extractKey(String code) => code.substring(1, code.length - 1);
-
-  //TODO remove below debug getter
-  Map<String, String> get debugSymbols => _symbols.debugSymbols;
 }

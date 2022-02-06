@@ -30,10 +30,6 @@ class MockSymbols extends _i1.Mock implements _i3.Symbols {
   }
 
   @override
-  Map<String, String> get debugSymbols =>
-      (super.noSuchMethod(Invocation.getter(#debugSymbols),
-          returnValue: <String, String>{}) as Map<String, String>);
-  @override
   _i2.Either<_i4.Failure, String> get(String? key) =>
       (super.noSuchMethod(Invocation.method(#get, [key]),
               returnValue: _FakeEither_0<_i4.Failure, String>())

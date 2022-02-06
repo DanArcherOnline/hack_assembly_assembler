@@ -9,7 +9,7 @@ import 'instruction_parser.dart';
 @injectable
 class CInstructionParser implements InstructionParser {
   static const cInstructionRulesRegex =
-      r'^([AMD0-9]*[;=]{1})(JMP|JGT|JLT|JGE|JLE|JEQ|JNE|[ADM0-9-+&|!]*)$';
+      r'^([AMD0-9]*[;=]{1})([A-Z]{3}|[ADM0-9-+&|!]*)$';
   static const List<String> validDestinations = [
     'null',
     'M',

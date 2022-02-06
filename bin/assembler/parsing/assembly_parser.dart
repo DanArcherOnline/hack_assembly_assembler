@@ -8,7 +8,6 @@ import 'c_instruction_parser.dart';
 
 @lazySingleton
 class AssemblyParser {
-  //TODO make dependecies private
   final AInstructionParser aInstructionParser;
   final CInstructionParser cInstructionParser;
 
@@ -22,7 +21,6 @@ class AssemblyParser {
     required int lineNumber,
   }) {
     final code = minifyCode(line);
-    //TODO add tests for comments/whitespace checking
     if (code.isEmpty) {
       return left(NotInstructionFailure(
         type: NotInstructionType.validNonCode,

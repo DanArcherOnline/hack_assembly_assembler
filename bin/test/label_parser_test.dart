@@ -7,15 +7,15 @@ import '../assembler/core/environment.dart';
 import '../assembler/core/failure.dart';
 import '../assembler/core/service_locator.dart';
 import '../assembler/parsing/label_parser.dart';
-import '../assembler/parsing/symbols.dart';
+import 'a_instruction_parser_test.mocks.dart';
 
 void main() {
   configureDependencies(Env.test);
   late LabelParser labelParser;
-  late Symbols symbols;
+  late MockSymbols symbols;
 
   setUp(() {
-    symbols = sl<Symbols>();
+    symbols = MockSymbols();
     labelParser = LabelParser(symbols: symbols);
   });
   group('isLabel', () {
@@ -146,6 +146,63 @@ void main() {
         );
         //assert
         verify(symbols.put(validLabelKey, labelValString));
+      },
+    );
+
+    test(
+      'should return an InvalidLabelFailure with line and lineNumber'
+      'when symbols returns an InvalidLabelFailure without line and lineNumber',
+      () async {
+        //arrange
+        when(symbols.put(any, any)).thenAnswer((_) => some(InvalidLabelFailure(
+              type: InvalidLabelType.invalidSyntax,
+            )));
+        //act
+        final failureOption = labelParser.parseLabel(
+          line: '',
+          lineNumber: 0,
+        );
+        //assert
+        expect(
+            failureOption,
+            some(InvalidLabelFailure(
+              type: InvalidLabelType.invalidSyntax,
+              lineNumber: 0,
+              line: '',
+            )));
+      },
+    );
+    test(
+      'should return none when symbol is valid and symbols returns none',
+      () async {
+        //arrange
+        final validLabelCode = '(VALID_LABEL_KEY)';
+        final validLabelKey = 'VALID_LABEL_KEY';
+        when(symbols.put(validLabelKey, '123')).thenAnswer((_) => none());
+        //act
+        final failureOption = labelParser.parseLabel(
+          line: validLabelCode,
+          lineNumber: 123,
+        );
+        //assert
+        expect(failureOption, none());
+      },
+    );
+    test(
+      'should throw an exception when symbols '
+      'returns a failure that is not an InvalidLabelFailure',
+      () async {
+        //arrange
+        when(symbols.put(any, any)).thenReturn(some(InvalidFilePathFailure(
+          type: InvalidFilePathType.invalidFileExtension,
+        )));
+        //act
+        Option<Failure> func() => labelParser.parseLabel(
+              line: '(VALID_LABEL)',
+              lineNumber: 0,
+            );
+        //assert
+        expect(func, throwsA(isA<Exception>()));
       },
     );
   });

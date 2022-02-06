@@ -3,6 +3,7 @@ import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
 import '../assembler/core/environment.dart';
+import '../assembler/core/exceptions.dart';
 import '../assembler/core/service_locator.dart';
 import '../assembler/io/machine_code_writer.dart';
 import '../assembler/translation/machine_code_instruction.dart';
@@ -60,7 +61,7 @@ void main() {
     );
 
     test(
-      'should throw an InvalidFilePathFailure when filePathIn is null',
+      'should throw an NoFilePathException when filePathIn is null',
       () async {
         //arrange
         //act
@@ -68,12 +69,12 @@ void main() {
         expect(
             () => MachineCodeWriter(
                 fileSystem: MemoryFileSystem(), filePathIn: null),
-            throwsA(isA<Exception>()));
+            throwsA(isA<NoFilePathException>()));
       },
     );
 
     test(
-      'should throw an InvalidFilePathFailure when the file given is not an .asm file',
+      'should throw an InvalidFilePathExtensionException when the file given is not an .asm file',
       () async {
         //arrange
         const nonAsmFilePathIn = '/test/path/test.asm_file.js';
@@ -82,7 +83,7 @@ void main() {
         expect(
             () => MachineCodeWriter(
                 fileSystem: MemoryFileSystem(), filePathIn: nonAsmFilePathIn),
-            throwsA(isA<Exception>()));
+            throwsA(isA<InvalidFilePathExtensionException>()));
       },
     );
   });
